@@ -1,28 +1,36 @@
 # BaapDrop - Dropshipping Business Platform
 
-A professional dropshipping business landing page that empowers potential resellers with interactive tools and comprehensive business insights.
+A professional dropshipping business platform designed to empower entrepreneurs with comprehensive business tools, interactive insights, and strategic resources for building successful online businesses.
 
 ![BaapDrop Platform](https://i.imgur.com/wZVznvE.png)
 
 ## 🚀 Features
 
-- **Interactive Product Catalog**: Browse through thousands of high-quality, high-margin products.
-- **Business Potential Calculator**: Visualize earnings with customizable parameters.
-- **Success Metrics Dashboard**: Real-time statistics on product performance and profit margins.
-- **Winning Products Section**: Data-driven product recommendations based on market trends.
+- **Interactive Product Catalog**: Browse through 10,000+ high-quality, high-margin products.
+- **Business Potential Calculator**: Visualize earnings with customizable parameters and different growth scenarios.
+- **Success Metrics Dashboard**: Real-time statistics on product performance and profit margins with visual charts.
+- **Winning Products Section**: Data-driven product recommendations based on market trends and profitability.
 - **Detailed Product Pages**: In-depth information with profit calculators for each product.
-- **Advanced Filtering**: Find perfect products by category, margin, price, and more.
+- **Advanced Filtering**: Find perfect products by category, margin, price, and sales velocity.
+- **WhatsApp Integration**: Real-time chat support for instant assistance to potential resellers.
+- **Tiered Pricing Plans**: Bronze, Gold, and Diamond membership options with annual/monthly pricing.
 - **Responsive Design**: Optimized for all devices from mobile to desktop.
+- **Zero Investment Model**: Complete dropshipping solution with no inventory requirements.
 
 ## 🛠️ Technology Stack
 
 - **Frontend**: React.js with TypeScript
-- **UI Components**: ShadCN UI with Tailwind CSS
-- **State Management**: React Query + Context
-- **Backend**: Express.js
+- **UI Framework**: ShadCN UI with Tailwind CSS
+- **Animations**: Framer Motion for smooth transitions and effects
+- **State Management**: React Query + Context API
+- **Charts & Visualization**: Recharts for dynamic data visualization
+- **Backend**: Express.js with TypeScript
 - **Database**: PostgreSQL with Drizzle ORM
-- **Authentication**: Passport.js with session-based auth
+- **Authentication**: Passport.js with session-based authentication
+- **Routing**: Wouter for lightweight client-side routing
+- **Form Handling**: React Hook Form with Zod validation
 - **API**: RESTful API design with proper error handling
+- **Theme**: Custom-branded theme with consistent color variables (#E40145)
 
 ## 🔧 Installation
 
@@ -76,31 +84,65 @@ A professional dropshipping business landing page that empowers potential resell
 
 ```
 baapdrop/
-├── client/               # Frontend React code
+├── client/                         # Frontend React code
 │   ├── src/
-│   │   ├── components/   # Reusable UI components
-│   │   ├── hooks/        # Custom React hooks
-│   │   ├── lib/          # Utilities and helpers
-│   │   ├── pages/        # Page components
-│   │   └── ...
-├── server/               # Backend Express.js code
-│   ├── routes.ts         # API routes
-│   ├── storage.ts        # Database access layer
-│   ├── index.ts          # Server entry point
-│   └── ...
-├── shared/               # Shared code between frontend and backend
-│   └── schema.ts         # Database schema and types
+│   │   ├── components/             # Reusable UI components
+│   │   │   ├── ui/                 # ShadCN UI components
+│   │   │   ├── AnnouncementBar.tsx # Site-wide announcement banner
+│   │   │   ├── Header.tsx          # Navigation header
+│   │   │   ├── Hero.tsx            # Landing page hero section
+│   │   │   ├── WinningProducts.tsx # Featured product carousel
+│   │   │   ├── ProductCategories.tsx # Product categories showcase
+│   │   │   ├── PotentialCalculator.tsx # Business calculator
+│   │   │   ├── SuccessMetrics.tsx  # Performance metrics dashboard
+│   │   │   ├── WhatsAppChat.tsx    # WhatsApp integration widget
+│   │   │   ├── PricingPlans.tsx    # Tiered membership options
+│   │   │   └── ...
+│   │   ├── config/                 # Configuration files
+│   │   ├── hooks/                  # Custom React hooks
+│   │   ├── lib/                    # Utilities and helpers
+│   │   ├── pages/                  # Page components
+│   │   │   ├── Home.tsx            # Landing page
+│   │   │   ├── ProductsPage.tsx    # Product catalog page
+│   │   │   └── not-found.tsx       # 404 page
+│   │   ├── App.tsx                 # Main application component
+│   │   └── main.tsx                # Application entry point
+├── server/                         # Backend Express.js code
+│   ├── db.ts                       # Database connection setup
+│   ├── routes.ts                   # API routes
+│   ├── storage.ts                  # Database access layer
+│   ├── index.ts                    # Server entry point
+│   └── vite.ts                     # Vite integration
+├── shared/                         # Shared code between frontend and backend
+│   └── schema.ts                   # Database schema and types
+├── theme.json                      # Theme configuration (primary color: #E40145)
 └── ...
 ```
 
 ## 🧪 Database Schema
 
-The application uses a PostgreSQL database with the following core tables:
+The application uses a PostgreSQL database with Drizzle ORM with the following tables:
 
 - **users**: Store user information for authentication
+  - id: Primary key
+  - username: Username for login
+  - password: Hashed password
+  - email: User's email address
+  - createdAt: Account creation timestamp
+
 - **leads**: Capture potential reseller information
-- **products**: (Coming soon) Product catalog information
+  - id: Primary key
+  - name: Full name
+  - email: Contact email
+  - phone: Phone number
+  - message: Optional message/query
+  - source: Where they found out about BaapDrop
+  - createdAt: Lead capture timestamp
+
+- **products**: (Coming soon) Complete product catalog
 - **categories**: (Coming soon) Product categorization
+- **orders**: (Coming soon) Reseller order management
+- **stats**: (Coming soon) Performance metrics
 
 ## 🚢 Deployment
 
