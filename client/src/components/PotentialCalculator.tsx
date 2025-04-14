@@ -391,7 +391,6 @@ export default function PotentialCalculator() {
                               paddingAngle={2}
                               dataKey="value"
                               label={({ value }) => `${value}%`}
-                              labelStyle={{ fontSize: '12px' }}
                             >
                               {pieData.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={entry.fill} />

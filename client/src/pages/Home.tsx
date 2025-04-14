@@ -7,6 +7,7 @@ import Testimonials from "@/components/Testimonials";
 import JoinForm from "@/components/JoinForm";
 import Features from "@/components/Features";
 import PotentialCalculator from "@/components/PotentialCalculator";
+import SuccessMetrics from "@/components/SuccessMetrics";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
         <WhyChooseUs />
         <ProductCategories />
         <PotentialCalculator />
+        <SuccessMetrics />
         <Testimonials />
         <JoinForm />
       </main>
