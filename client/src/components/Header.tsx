@@ -30,10 +30,19 @@ export default function Header() {
     setMobileMenuOpen(!mobileMenuOpen);
   };
 
+  // Import useHistory from wouter
+  const navigate = useLocation()[1];
+  
   const handleNavClick = (id: string) => {
-    // If we're on the products page, navigate back to home first
+    // If we're on the products page, navigate back to home without page refresh
     if (isProductsPage) {
-      window.location.href = `/#${id}`;
+      if (id === "products") {
+        // If already on products page and user clicks products link, simply scroll to top
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      } else {
+        // Navigate programmatically to the homepage with the section ID
+        navigate(`/#${id}`);
+      }
       return;
     }
     
@@ -92,7 +101,7 @@ export default function Header() {
             {[
               { id: "how-it-works", label: "How It Works" },
               { id: "why-us", label: "Why Choose Us" },
-              { id: "products", label: "Products" },
+              { id: isProductsPage ? "products" : "product-categories", label: "Products" },
               { id: "calculator", label: "Profit Calculator" },
               { id: "success-metrics", label: "Success Metrics" },
               { id: "testimonials", label: "Success Stories" }
@@ -182,7 +191,7 @@ export default function Header() {
               {[
                 { id: "how-it-works", label: "How It Works" },
                 { id: "why-us", label: "Why Choose Us" },
-                { id: "products", label: "Products" },
+                { id: isProductsPage ? "products" : "product-categories", label: "Products" },
                 { id: "calculator", label: "Profit Calculator" },
                 { id: "success-metrics", label: "Success Metrics" },
                 { id: "testimonials", label: "Success Stories" }

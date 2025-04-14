@@ -47,8 +47,12 @@ const trending = [
 export default function ProductCategories() {
   const [_, setLocation] = useLocation();
   return (
-    <section id="products" className="py-24 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="product-categories" className="py-24 bg-gradient-to-r from-[#ffebf1] via-white to-white relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-32 -mt-32"></div>
+      <div className="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full -ml-32 -mb-32"></div>
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -61,7 +65,7 @@ export default function ProductCategories() {
               10,000+ Products Available
             </span>
           </div>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Top Product Categories</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">Explore Our Product Catalogue</h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-lg">
             Choose from thousands of high-quality, trending products with excellent profit margins.
           </p>
@@ -108,8 +112,7 @@ export default function ProductCategories() {
                 </div>
                 
                 <Button
-                  variant="ghost" 
-                  className="w-full mt-4 text-primary hover:bg-primary/10 border border-gray-200"
+                  className="w-full mt-4 bg-primary hover:bg-primary/90 text-white"
                   onClick={() => setLocation(`/products?category=${encodeURIComponent(category.name)}`)}
                 >
                   Browse Products
@@ -122,44 +125,50 @@ export default function ProductCategories() {
         
         {/* Trending Categories */}
         <motion.div 
-          className="mt-20 bg-white rounded-xl shadow-md overflow-hidden"
+          className="mt-20 bg-white rounded-xl shadow-md overflow-hidden border border-gray-100"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <div className="p-8 md:p-10">
-            <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
-              <div>
-                <div className="flex items-center mb-2">
-                  <TrendingUp className="text-primary h-5 w-5 mr-2" />
+          <div className="relative">
+            <div className="absolute left-0 top-0 w-full h-1 bg-gradient-to-r from-primary/80 to-primary"></div>
+            <div className="p-8 md:p-10">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
+                <div>
+                  <div className="inline-block mb-2 bg-primary/10 px-3 py-1 rounded-full">
+                    <div className="flex items-center">
+                      <TrendingUp className="text-primary h-4 w-4 mr-2" />
+                      <span className="text-primary font-medium text-sm">High Demand</span>
+                    </div>
+                  </div>
                   <h3 className="text-2xl font-bold">Trending Categories</h3>
+                  <p className="text-gray-600 mt-1">Most popular product categories with high demand in the market</p>
                 </div>
-                <p className="text-gray-600">Most popular product categories with high demand in the market</p>
-              </div>
-              <Button
-                className="mt-4 md:mt-0 primary-gradient animated-btn shadow-md"
-                onClick={() => scrollToElement("join-now")}
-              >
-                Become a Reseller
-              </Button>
-            </div>
-            
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-              {trending.map((item, index) => (
-                <motion.div 
-                  key={index}
-                  className="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
-                  initial={{ opacity: 0, x: -10 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.3, delay: 0.1 * index }}
-                  whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                <Button
+                  className="mt-4 md:mt-0 primary-gradient animated-btn shadow-md"
+                  onClick={() => scrollToElement("join-now")}
                 >
-                  <Tag className="h-4 w-4 mr-2 text-primary" />
-                  <span className="text-sm font-medium">{item}</span>
-                </motion.div>
-              ))}
+                  Become a Reseller
+                </Button>
+              </div>
+              
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+                {trending.map((item, index) => (
+                  <motion.div 
+                    key={index}
+                    className="flex items-center p-3 border border-gray-200 rounded-lg hover:border-primary hover:bg-primary/5 transition-all"
+                    initial={{ opacity: 0, x: -10 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.3, delay: 0.1 * index }}
+                    whileHover={{ y: -3, transition: { duration: 0.2 } }}
+                  >
+                    <Tag className="h-4 w-4 mr-2 text-primary" />
+                    <span className="text-sm font-medium">{item}</span>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </motion.div>
