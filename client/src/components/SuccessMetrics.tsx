@@ -606,15 +606,15 @@ export default function SuccessMetrics() {
                             <Radar
                               name="Industry Average"
                               dataKey="industry"
-                              stroke="#8884d8"
-                              fill="#8884d8"
+                              stroke="#f43f5e"
+                              fill="#f43f5e"
                               fillOpacity={0.2}
                             />
                             <Radar
                               name="BaapDrop Platform"
                               dataKey="platform"
-                              stroke="#4f46e5"
-                              fill="#4f46e5"
+                              stroke="#E40145"
+                              fill="#E40145"
                               fillOpacity={0.5}
                             />
                             <Legend />
@@ -701,7 +701,7 @@ export default function SuccessMetrics() {
                             type="monotone" 
                             dataKey="averageProfit" 
                             name="Average Seller" 
-                            stroke="#8884d8" 
+                            stroke="#f43f5e" 
                             strokeWidth={2}
                             dot={true}
                             activeDot={{ r: 8 }}
@@ -710,7 +710,7 @@ export default function SuccessMetrics() {
                             type="monotone" 
                             dataKey="topPerformerProfit" 
                             name="Top Performer" 
-                            stroke="#4f46e5" 
+                            stroke="#E40145" 
                             strokeWidth={2}
                             dot={true}
                             activeDot={{ r: 8 }}
@@ -722,7 +722,7 @@ export default function SuccessMetrics() {
                 </Card>
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-                  <Card className="bg-gradient-to-br from-indigo-50 to-purple-50 border-indigo-100">
+                  <Card className="bg-gradient-to-br from-red-50 to-pink-50 border-red-100">
                     <CardHeader>
                       <CardTitle className="flex items-center">
                         <Clock className="mr-2 h-5 w-5 text-primary" />
@@ -742,7 +742,7 @@ export default function SuccessMetrics() {
                     </CardContent>
                   </Card>
                   
-                  <Card className="bg-gradient-to-br from-indigo-50 to-blue-50 border-indigo-100">
+                  <Card className="bg-gradient-to-br from-red-50 to-orange-50 border-red-100">
                     <CardHeader>
                       <CardTitle className="flex items-center">
                         <TrendingUp className="mr-2 h-5 w-5 text-primary" />
@@ -753,16 +753,16 @@ export default function SuccessMetrics() {
                       <div className="text-center py-4">
                         <div className="flex items-center justify-center mb-4">
                           <div className="relative h-32 w-32 rounded-full flex items-center justify-center bg-white shadow-md">
-                            <div className="text-4xl font-bold text-green-600">320</div>
-                            <div className="text-sm text-green-600">%</div>
+                            <div className="text-4xl font-bold text-primary">320</div>
+                            <div className="text-sm text-primary">%</div>
                           </div>
                         </div>
-                        <p className="text-gray-600">Top sellers achieve an average <span className="font-semibold text-green-600">320% growth</span> in their first year of operations</p>
+                        <p className="text-gray-600">Top sellers achieve an average <span className="font-semibold text-primary">320% growth</span> in their first year of operations</p>
                       </div>
                     </CardContent>
                   </Card>
                   
-                  <Card className="bg-gradient-to-br from-indigo-50 to-cyan-50 border-indigo-100">
+                  <Card className="bg-gradient-to-br from-red-50 to-amber-50 border-red-100">
                     <CardHeader>
                       <CardTitle className="flex items-center">
                         <Layers className="mr-2 h-5 w-5 text-primary" />
@@ -773,8 +773,8 @@ export default function SuccessMetrics() {
                       <div className="text-center py-4">
                         <div className="flex items-center justify-center mb-4">
                           <div className="relative h-32 w-32 rounded-full flex items-center justify-center bg-white shadow-md">
-                            <div className="text-4xl font-bold text-orange-500">10</div>
-                            <div className="text-sm text-orange-500">X</div>
+                            <div className="text-4xl font-bold text-primary">10</div>
+                            <div className="text-sm text-primary">X</div>
                           </div>
                         </div>
                         <p className="text-gray-600">Our platform allows for <span className="font-semibold text-orange-500">10X scaling</span> without additional infrastructure investment</p>
