@@ -32,6 +32,24 @@ A professional dropshipping business platform designed to empower entrepreneurs 
 - **API**: RESTful API design with proper error handling
 - **Theme**: Custom-branded theme with consistent color variables (#E40145)
 
+## 🧩 Demo Page Template
+
+The application includes a comprehensive demo page template to accelerate development of new pages. Access it at `/demo` or by clicking the "View Demo Page Template" link in the Hero section.
+
+The demo page showcases:
+- Common UI patterns and layouts
+- Proper implementation of animations with Framer Motion
+- ShadcnUI component usage examples
+- Responsive design patterns
+- Proper routing using Wouter
+- Standard page sections (hero, features, CTA)
+
+To create a new page:
+1. Copy the `DemoPage.tsx` file from the `pages` directory
+2. Rename it to your new page name
+3. Add a route in `App.tsx` for the new page
+4. Customize content as needed while maintaining the established patterns
+
 ## 🔧 Installation
 
 ### Prerequisites
@@ -104,6 +122,7 @@ baapdrop/
 │   │   ├── pages/                  # Page components
 │   │   │   ├── Home.tsx            # Landing page
 │   │   │   ├── ProductsPage.tsx    # Product catalog page
+│   │   │   ├── DemoPage.tsx        # Template for creating new pages
 │   │   │   └── not-found.tsx       # 404 page
 │   │   ├── App.tsx                 # Main application component
 │   │   └── main.tsx                # Application entry point
