@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import { scrollToElement } from "@/lib/utils";
 import { ArrowRight, ShoppingBag, Tag, TrendingUp, Percent } from "lucide-react";
+import { useLocation } from "wouter";
 
 const categories = [
   {
@@ -44,6 +45,7 @@ const trending = [
 ];
 
 export default function ProductCategories() {
+  const [_, setLocation] = useLocation();
   return (
     <section id="products" className="py-24 bg-gray-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -108,7 +110,7 @@ export default function ProductCategories() {
                 <Button
                   variant="ghost" 
                   className="w-full mt-4 text-primary hover:bg-primary/10 border border-gray-200"
-                  onClick={() => scrollToElement("join-now")}
+                  onClick={() => setLocation(`/products?category=${encodeURIComponent(category.name)}`)}
                 >
                   Browse Products
                   <ArrowRight className="h-4 w-4 ml-2" />
@@ -176,7 +178,7 @@ export default function ProductCategories() {
           <Button
             size="lg"
             className="primary-gradient animated-btn font-medium px-8 py-6 text-lg shadow-lg"
-            onClick={() => scrollToElement("join-now")}
+            onClick={() => setLocation("/products")}
           >
             View Complete Catalog
             <ArrowRight className="ml-2 h-5 w-5" />
