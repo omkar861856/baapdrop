@@ -314,7 +314,7 @@ export default function SuccessMetrics() {
                 cy="50%"
                 labelLine={true}
                 outerRadius={130}
-                fill="#8884d8"
+                fill="#E40145"
                 dataKey="margin"
                 nameKey="name"
                 label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
@@ -338,15 +338,15 @@ export default function SuccessMetrics() {
               <Radar
                 name="Industry Average"
                 dataKey="industry"
-                stroke="#8884d8"
-                fill="#8884d8"
+                stroke="#a0a0a0"
+                fill="#a0a0a0"
                 fillOpacity={0.2}
               />
               <Radar
                 name="BaapDrop Platform"
                 dataKey="platform"
-                stroke="#4f46e5"
-                fill="#4f46e5"
+                stroke="#E40145"
+                fill="#E40145"
                 fillOpacity={0.5}
               />
               <Legend />
