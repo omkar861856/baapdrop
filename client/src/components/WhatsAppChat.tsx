@@ -143,14 +143,14 @@ export default function WhatsAppChat({
   if (!isVisible) return null;
 
   return (
-    <div className={`fixed bottom-6 ${position === "right" ? "right-6" : "left-6"} z-50`}>
+    <div className={`fixed bottom-24 left-6 z-40`}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
-            className="bg-white rounded-lg shadow-lg p-4 mb-4 w-80"
+            className="bg-white rounded-lg shadow-lg p-4 mb-4 w-80 absolute bottom-full left-0 mb-3"
           >
             <div className="flex justify-between items-center mb-3">
               <div className="flex items-center">

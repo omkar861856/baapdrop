@@ -270,7 +270,7 @@ export default function SuccessMetrics() {
   
   const averages = calculateAverages();
   
-  const COLORS = ['#4f46e5', '#10b981', '#f59e0b', '#8b5cf6', '#ec4899', '#ef4444'];
+  const COLORS = ['#E40145', '#10b981', '#f59e0b', '#f43f5e', '#ec4899', '#ef4444'];
   
   const renderCategoryChart = () => {
     switch(chartView) {
@@ -298,7 +298,7 @@ export default function SuccessMetrics() {
               <Bar 
                 dataKey="margin" 
                 name="Profit Margin" 
-                fill="#4f46e5"
+                fill="#E40145"
                 label={{ position: 'top', formatter: (value: number) => `${value}%`, fontSize: 12 }}
               />
             </BarChart>
@@ -360,7 +360,7 @@ export default function SuccessMetrics() {
   };
   
   return (
-    <section id="success-metrics" className="py-24 bg-gradient-to-br from-white to-indigo-50">
+    <section id="success-metrics" className="py-24 bg-gradient-to-br from-white to-red-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="text-center mb-16"
@@ -584,7 +584,7 @@ export default function SuccessMetrics() {
                               width={100}
                             />
                             <Tooltip content={<CustomTooltip />} />
-                            <Bar dataKey="margin" name="Profit Margin" fill="#4f46e5" />
+                            <Bar dataKey="margin" name="Profit Margin" fill="#E40145" />
                           </BarChart>
                         </ResponsiveContainer>
                       </div>
