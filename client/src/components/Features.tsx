@@ -166,7 +166,7 @@ export default function Features() {
         
         {/* Featured Banner */}
         <motion.div 
-          className="bg-gradient-to-r from-primary-700 to-primary rounded-xl overflow-hidden shadow-xl mb-20 relative"
+          className="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl overflow-hidden shadow-xl mb-20 relative"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -175,10 +175,14 @@ export default function Features() {
           {/* Background decoration */}
           <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-white opacity-10"></div>
           <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-white opacity-10"></div>
+          <div className="absolute left-0 top-0 w-full h-2 bg-primary"></div>
           
           <div className="p-8 md:p-12 text-white relative z-10">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
               <div>
+                <span className="bg-primary/20 text-primary px-4 py-1.5 rounded-full text-sm font-medium inline-block mb-3">
+                  High Earnings Potential
+                </span>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4">Earn 30-60% Profit Margins</h3>
                 <p className="mb-6 text-white/90">
                   With our platform, you can earn significant profits on every sale. Our competitive pricing allows you to set your own margins and maximize your earnings.
@@ -196,22 +200,22 @@ export default function Features() {
                 </div>
               </div>
               <div className="space-y-6">
-                <div className="flex items-center gap-4 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                  <BadgePercent className="h-10 w-10 text-yellow-300" />
+                <div className="flex items-center gap-4 bg-primary/20 p-4 rounded-lg backdrop-blur-sm">
+                  <BadgePercent className="h-10 w-10 text-primary" />
                   <div>
                     <h4 className="font-semibold text-lg">Dynamic Pricing Tool</h4>
-                    <p className="text-white/80 text-sm">Set your selling prices and view real-time profit calculations</p>
+                    <p className="text-white/90 text-sm">Set your selling prices and view real-time profit calculations</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 bg-white/10 p-4 rounded-lg backdrop-blur-sm">
-                  <LineChartIcon className="h-10 w-10 text-yellow-300" />
+                <div className="flex items-center gap-4 bg-primary/20 p-4 rounded-lg backdrop-blur-sm">
+                  <LineChartIcon className="h-10 w-10 text-primary" />
                   <div>
                     <h4 className="font-semibold text-lg">Sales Analytics</h4>
-                    <p className="text-white/80 text-sm">Track your sales, profits, and best-selling products</p>
+                    <p className="text-white/90 text-sm">Track your sales, profits, and best-selling products</p>
                   </div>
                 </div>
                 <Button
-                  className="w-full bg-white text-primary hover:bg-white/90 font-medium"
+                  className="w-full bg-primary hover:bg-primary/90 text-white font-medium shadow-lg"
                   onClick={() => scrollToElement("join-now")}
                 >
                   Start Earning Today

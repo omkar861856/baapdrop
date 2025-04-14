@@ -80,7 +80,7 @@ export default function Header() {
               <motion.a 
                 key={item.id}
                 href={`#${item.id}`} 
-                className="text-gray-700 hover:text-primary font-medium relative"
+                className="text-gray-700 hover:text-primary font-medium relative group"
                 onClick={(e) => {
                   e.preventDefault();
                   handleNavClick(item.id);
@@ -92,9 +92,7 @@ export default function Header() {
               >
                 {item.label}
                 <motion.span
-                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary"
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.2 }}
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300"
                 />
               </motion.a>
             ))}
