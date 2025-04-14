@@ -9,6 +9,7 @@ import Features from "@/components/Features";
 import PotentialCalculator from "@/components/PotentialCalculator";
 import SuccessMetrics from "@/components/SuccessMetrics";
 import WinningProducts from "@/components/WinningProducts";
+import PricingPlans from "@/components/PricingPlans";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -24,6 +25,7 @@ export default function Home() {
         <WinningProducts />
         <PotentialCalculator />
         <SuccessMetrics />
+        <PricingPlans />
         <Testimonials />
         <JoinForm />
       </main>
