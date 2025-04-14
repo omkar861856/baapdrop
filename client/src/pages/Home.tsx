@@ -10,11 +10,13 @@ import PotentialCalculator from "@/components/PotentialCalculator";
 import SuccessMetrics from "@/components/SuccessMetrics";
 import WinningProducts from "@/components/WinningProducts";
 import PricingPlans from "@/components/PricingPlans";
+import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <AnnouncementBar />
       <Header />
       <main>
         <Hero />

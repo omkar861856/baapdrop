@@ -27,7 +27,7 @@ interface WhatsAppChatProps {
 export default function WhatsAppChat({
   phoneNumber,
   message = "Hello! I'm interested in becoming a reseller. Can you provide more information?",
-  position = "right",
+  position = "left",
   delay = 2000,
 }: WhatsAppChatProps) {
   const [isVisible, setIsVisible] = useState(false);
@@ -183,7 +183,7 @@ export default function WhatsAppChat({
                         <div 
                           className={`max-w-[80%] rounded-lg p-2 ${
                             msg.sender === 'user' 
-                              ? 'bg-[#E40145] text-white rounded-tr-none' 
+                              ? 'bg-[#dcf8c6] text-gray-800 rounded-tr-none' 
                               : 'bg-white text-gray-800 rounded-tl-none'
                           }`}
                         >
