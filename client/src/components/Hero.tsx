@@ -1,9 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { scrollToElement } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { CheckCircle, ArrowRight, Phone, Download, ShoppingBag } from "lucide-react";
+import { CheckCircle, ArrowRight, Phone, Download, ShoppingBag, ExternalLink } from "lucide-react";
+import { useLocation } from "wouter";
 
 export default function Hero() {
+  const [_, setLocation] = useLocation();
   const statsItems = [
     { value: "10,000+", label: "Products" },
     { value: "50%+", label: "Profit Margin" },
@@ -137,6 +139,27 @@ export default function Hero() {
                   <p className="text-xs md:text-sm text-white/80">{stat.label}</p>
                 </motion.div>
               ))}
+            </motion.div>
+            
+            {/* Demo Page Link - for developers */}
+            <motion.div 
+              className="mt-8 text-center lg:text-left"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 1.2 }}
+            >
+              <Button
+                variant="outline" 
+                size="sm"
+                className="bg-white/20 backdrop-blur-sm border-white/40 text-white hover:bg-white/30"
+                onClick={() => setLocation("/demo")}
+              >
+                <ExternalLink className="h-4 w-4 mr-2" />
+                View Demo Page Template
+              </Button>
+              <p className="text-xs mt-2 text-white/70">
+                Example page template for developers
+              </p>
             </motion.div>
           </motion.div>
           

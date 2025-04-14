@@ -7,12 +7,14 @@ import { whatsappConfig } from "@/config/whatsapp";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/Home";
 import ProductsPage from "@/pages/ProductsPage";
+import DemoPage from "@/pages/DemoPage";
 
 function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/products" component={ProductsPage} />
+      <Route path="/demo" component={DemoPage} />
       <Route component={NotFound} />
     </Switch>
   );
