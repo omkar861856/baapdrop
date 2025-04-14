@@ -51,7 +51,7 @@
   }
 
   .product-card {
-    @apply relative overflow-hidden rounded-lg transition-all duration-300 group;
+    @apply relative overflow-hidden rounded-lg transition-all duration-300;
   }
 
   .product-card:hover img {
