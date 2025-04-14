@@ -16,7 +16,18 @@
   }
 
   .hero-gradient {
-    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+    background: linear-gradient(135deg, hsl(230, 70%, 50%) 0%, hsl(250, 70%, 60%) 100%);
+  }
+
+  .primary-gradient {
+    background: linear-gradient(90deg, hsl(230, 70%, 50%) 0%, hsl(250, 70%, 60%) 100%);
+  }
+
+  .glass-effect {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
   }
 
   .scale-hover {
@@ -28,10 +39,39 @@
   }
 
   .testimonial-card {
-    @apply transition-transform duration-300;
+    @apply transition-all duration-300 border border-gray-200;
   }
 
   .testimonial-card:hover {
-    @apply transform -translate-y-1;
+    @apply transform -translate-y-1 border-primary/30 shadow-lg;
+  }
+
+  .feature-card {
+    @apply bg-white rounded-lg p-6 shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-primary/20;
+  }
+
+  .product-card {
+    @apply relative overflow-hidden rounded-lg transition-all duration-300 group;
+  }
+
+  .product-card:hover img {
+    @apply transform scale-105;
+  }
+
+  .animated-btn {
+    @apply relative overflow-hidden transition-all duration-300;
+  }
+  
+  .animated-btn::after {
+    content: '';
+    @apply absolute inset-0 bg-white opacity-0 transition-opacity duration-300;
+  }
+  
+  .animated-btn:hover::after {
+    @apply opacity-20;
+  }
+
+  .whatsapp-btn {
+    @apply bg-green-500 hover:bg-green-600 text-white flex items-center justify-center gap-2 font-medium;
   }
 }

@@ -1,9 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { scrollToElement } from "@/lib/utils";
+import { motion, AnimatePresence } from "framer-motion";
+import { PhoneCall, Download, Menu, X } from "lucide-react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 20) {
+        setScrolled(true);
+      } else {
+        setScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -17,134 +35,160 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-md">
+    <header 
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled 
+          ? "bg-white/95 backdrop-blur-sm shadow-md py-2" 
+          : "bg-transparent py-4"
+      }`}
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
-          <div className="flex items-center">
+        <div className="flex justify-between items-center">
+          <motion.div 
+            className="flex items-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.3 }}
+          >
             {/* Logo */}
             <a href="#" className="flex items-center" onClick={() => handleNavClick("hero")}>
-              <span className="text-primary text-2xl font-bold">DropMaster</span>
+              <span className="text-primary text-2xl font-bold">BaapDrop</span>
             </a>
-          </div>
+          </motion.div>
           
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex space-x-10">
-            <a 
-              href="#how-it-works" 
-              className="text-gray-700 hover:text-primary font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("how-it-works");
-              }}
-            >
-              How It Works
-            </a>
-            <a 
-              href="#why-us" 
-              className="text-gray-700 hover:text-primary font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("why-us");
-              }}
-            >
-              Why Choose Us
-            </a>
-            <a 
-              href="#products" 
-              className="text-gray-700 hover:text-primary font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("products");
-              }}
-            >
-              Products
-            </a>
-            <a 
-              href="#testimonials" 
-              className="text-gray-700 hover:text-primary font-medium"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("testimonials");
-              }}
-            >
-              Success Stories
-            </a>
+          <nav className="hidden md:flex space-x-8">
+            {[
+              { id: "how-it-works", label: "How It Works" },
+              { id: "why-us", label: "Why Choose Us" },
+              { id: "products", label: "Products" },
+              { id: "testimonials", label: "Success Stories" }
+            ].map((item, index) => (
+              <motion.a 
+                key={item.id}
+                href={`#${item.id}`} 
+                className="text-gray-700 hover:text-primary font-medium relative"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.id);
+                }}
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: 0.1 * index }}
+                whileHover={{ scale: 1.05 }}
+              >
+                {item.label}
+                <motion.span
+                  className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary"
+                  whileHover={{ width: "100%" }}
+                  transition={{ duration: 0.2 }}
+                />
+              </motion.a>
+            ))}
           </nav>
           
-          {/* CTA Button */}
-          <div>
-            <Button 
-              className="hidden md:inline-block"
-              onClick={() => handleNavClick("join-now")}
+          {/* CTA Buttons */}
+          <div className="hidden md:flex items-center space-x-3">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.4 }}
             >
-              Become a Reseller
-            </Button>
+              <Button 
+                variant="outline"
+                size="sm"
+                className="border-primary text-primary hover:bg-primary hover:text-white"
+                onClick={() => handleNavClick("join-now")}
+              >
+                <Download className="mr-1 h-4 w-4" />
+                Download App
+              </Button>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.3, delay: 0.5 }}
+            >
+              <Button 
+                size="sm"
+                className="primary-gradient animated-btn"
+                onClick={() => handleNavClick("join-now")}
+              >
+                <PhoneCall className="mr-1 h-4 w-4" />
+                Join Now
+              </Button>
+            </motion.div>
           </div>
           
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <button 
-              type="button" 
-              className="text-gray-500 hover:text-primary focus:outline-none" 
+            <Button 
+              variant="ghost"
+              size="sm"
+              className="text-gray-500 hover:text-primary focus:outline-none p-1" 
               aria-label="Toggle menu"
               onClick={toggleMobileMenu}
             >
-              <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16m-7 6h7" />
-              </svg>
-            </button>
+              {mobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </Button>
           </div>
         </div>
         
         {/* Mobile Navigation */}
-        <div className={`md:hidden pb-4 ${mobileMenuOpen ? 'block' : 'hidden'}`}>
-          <a 
-            href="#how-it-works" 
-            className="block py-2 text-gray-700 hover:text-primary font-medium"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("how-it-works");
-            }}
-          >
-            How It Works
-          </a>
-          <a 
-            href="#why-us" 
-            className="block py-2 text-gray-700 hover:text-primary font-medium"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("why-us");
-            }}
-          >
-            Why Choose Us
-          </a>
-          <a 
-            href="#products" 
-            className="block py-2 text-gray-700 hover:text-primary font-medium"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("products");
-            }}
-          >
-            Products
-          </a>
-          <a 
-            href="#testimonials" 
-            className="block py-2 text-gray-700 hover:text-primary font-medium"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick("testimonials");
-            }}
-          >
-            Success Stories
-          </a>
-          <Button 
-            className="block w-full mt-2"
-            onClick={() => handleNavClick("join-now")}
-          >
-            Become a Reseller
-          </Button>
-        </div>
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div 
+              className="md:hidden py-4 mt-2 bg-white rounded-lg shadow-lg"
+              initial={{ opacity: 0, height: 0, y: -10 }}
+              animate={{ opacity: 1, height: "auto", y: 0 }}
+              exit={{ opacity: 0, height: 0, y: -10 }}
+              transition={{ duration: 0.3 }}
+            >
+              {[
+                { id: "how-it-works", label: "How It Works" },
+                { id: "why-us", label: "Why Choose Us" },
+                { id: "products", label: "Products" },
+                { id: "testimonials", label: "Success Stories" }
+              ].map((item, index) => (
+                <motion.a 
+                  key={item.id}
+                  href={`#${item.id}`} 
+                  className="block py-2 px-4 text-gray-700 hover:text-primary hover:bg-gray-50 font-medium"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(item.id);
+                  }}
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.2, delay: 0.05 * index }}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+              <div className="mt-3 px-4 space-y-2">
+                <Button 
+                  variant="outline"
+                  className="w-full border-primary text-primary hover:bg-primary hover:text-white"
+                  onClick={() => handleNavClick("join-now")}
+                >
+                  <Download className="mr-1 h-4 w-4" />
+                  Download App
+                </Button>
+                <Button 
+                  className="w-full primary-gradient"
+                  onClick={() => handleNavClick("join-now")}
+                >
+                  <PhoneCall className="mr-1 h-4 w-4" />
+                  Join Now
+                </Button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );
