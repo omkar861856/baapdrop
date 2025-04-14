@@ -6,7 +6,7 @@ import {
   TrendingUp,
   Star,
   BarChart2,
-  Package
+  Package,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,9 +48,10 @@ const winningProducts: WinningProduct[] = [
     profitPotential: 85,
     salesVelocity: 92,
     competition: 30,
-    image: "https://images.unsplash.com/photo-1610298324618-73fdb2151bd8?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image:
+      "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
     tags: ["Trending", "Low Competition", "High Margin"],
-    trending: true
+    trending: true,
   },
   {
     id: 2,
@@ -62,9 +63,10 @@ const winningProducts: WinningProduct[] = [
     profitPotential: 78,
     salesVelocity: 89,
     competition: 45,
-    image: "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image:
+      "https://images.unsplash.com/photo-1590658268037-6bf12165a8df?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
     tags: ["Trending", "High Demand"],
-    trending: true
+    trending: true,
   },
   {
     id: 3,
@@ -76,9 +78,10 @@ const winningProducts: WinningProduct[] = [
     profitPotential: 80,
     salesVelocity: 85,
     competition: 25,
-    image: "https://images.unsplash.com/photo-1612778992781-15be069bdba9?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image:
+      "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
     tags: ["Trending", "Low Competition", "High Margin"],
-    trending: true
+    trending: false,
   },
   {
     id: 4,
@@ -90,26 +93,31 @@ const winningProducts: WinningProduct[] = [
     profitPotential: 75,
     salesVelocity: 80,
     competition: 40,
-    image: "https://images.unsplash.com/photo-1598268030800-7d8a2ad1f887?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+    image:
+      "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
     tags: ["Trending", "Easy to Ship"],
-    trending: true
-  }
+    trending: true,
+  },
 ];
 
 // Product card component
 const WinningProductCard = ({ product }: { product: WinningProduct }) => {
   const profit = product.retailPrice - product.wholesalePrice;
-  
+  const isLinkDisabled = true;
+
   return (
     <Card className="h-full flex flex-col overflow-hidden hover:shadow-lg transition-shadow duration-300">
       <div className="relative overflow-hidden" style={{ height: "180px" }}>
-        <img 
-          src={product.image} 
-          alt={product.name} 
+        <img
+          src={product.image}
+          alt={product.name}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
         />
         <div className="absolute top-0 left-0 w-full px-3 py-2 flex justify-between">
-          <Badge variant="secondary" className="bg-white/90 backdrop-blur-sm font-medium">
+          <Badge
+            variant="secondary"
+            className="bg-white/90 backdrop-blur-sm font-medium"
+          >
             ₹{product.wholesalePrice}
           </Badge>
           {product.trending && (
@@ -120,12 +128,12 @@ const WinningProductCard = ({ product }: { product: WinningProduct }) => {
           )}
         </div>
       </div>
-      
+
       <CardHeader className="pb-2">
         <CardTitle className="text-base line-clamp-2">{product.name}</CardTitle>
         <CardDescription>{product.category}</CardDescription>
       </CardHeader>
-      
+
       <CardContent className="pb-2 flex-grow">
         <div className="space-y-3">
           <div>
@@ -135,7 +143,7 @@ const WinningProductCard = ({ product }: { product: WinningProduct }) => {
             </div>
             <Progress value={product.profitPotential} className="h-2" />
           </div>
-          
+
           <div>
             <div className="flex justify-between text-sm mb-1">
               <span className="text-gray-600">Sales Velocity</span>
@@ -143,7 +151,7 @@ const WinningProductCard = ({ product }: { product: WinningProduct }) => {
             </div>
             <Progress value={product.salesVelocity} className="h-2" />
           </div>
-          
+
           <div>
             <div className="flex justify-between text-sm mb-1">
               <span className="text-gray-600">Low Competition</span>
@@ -151,7 +159,7 @@ const WinningProductCard = ({ product }: { product: WinningProduct }) => {
             </div>
             <Progress value={100 - product.competition} className="h-2" />
           </div>
-          
+
           <div className="pt-1 flex flex-wrap gap-1">
             {product.tags.map((tag, i) => (
               <Badge key={i} variant="outline" className="text-xs font-normal">
@@ -161,10 +169,10 @@ const WinningProductCard = ({ product }: { product: WinningProduct }) => {
           </div>
         </div>
       </CardContent>
-      
+
       <CardFooter className="pt-0">
-        <Link href={`/products?id=${product.id}`}>
-          <Button className="w-full">
+        <Link href={isLinkDisabled ? "#" : `/products?id=${product.id}`}>
+          <Button disabled={isLinkDisabled} className="w-full">
             View Details
             <ChevronRight className="h-4 w-4 ml-1" />
           </Button>
@@ -181,11 +189,12 @@ export default function WinningProducts() {
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold mb-3">Winning Products</h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
-            Discover high-margin, trending products with proven sales potential and low competition. 
-            Updated weekly based on market data and sales performance.
+            Discover high-margin, trending products with proven sales potential
+            and low competition. Updated weekly based on market data and sales
+            performance.
           </p>
         </div>
-        
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {winningProducts.map((product) => (
             <motion.div
@@ -199,17 +208,20 @@ export default function WinningProducts() {
             </motion.div>
           ))}
         </div>
-        
+
         <div className="mt-12 text-center">
           <div className="inline-flex items-center justify-center p-4 mb-6 bg-primary/10 rounded-full">
             <BarChart2 className="h-6 w-6 text-primary" />
           </div>
-          <h3 className="text-2xl font-bold mb-3">Data-Driven Product Selection</h3>
+          <h3 className="text-2xl font-bold mb-3">
+            Data-Driven Product Selection
+          </h3>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8">
-            Our winning products are selected based on comprehensive market analysis, 
-            competitor research, and real sales data to maximize your profit potential.
+            Our winning products are selected based on comprehensive market
+            analysis, competitor research, and real sales data to maximize your
+            profit potential.
           </p>
-          
+
           <Link href="/products">
             <Button size="lg" className="animated-btn">
               Browse All Winning Products
