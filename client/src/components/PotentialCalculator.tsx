@@ -375,22 +375,23 @@ export default function PotentialCalculator() {
                 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                   <Card>
-                    <CardHeader className="py-3">
+                    <CardHeader className="p-4">
                       <CardTitle className="text-sm">Profit Margin</CardTitle>
                     </CardHeader>
-                    <CardContent className="pt-0 flex justify-center">
-                      <div className="h-[150px] w-[150px]">
+                    <CardContent className="p-4 pt-0 flex justify-center">
+                      <div className="h-[120px] w-[120px] sm:h-[150px] sm:w-[150px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <PieChart>
+                          <PieChart margin={{ top: 0, right: 0, left: 0, bottom: 0 }}>
                             <Pie
                               data={pieData}
                               cx="50%"
                               cy="50%"
-                              innerRadius={40}
-                              outerRadius={70}
+                              innerRadius={30}
+                              outerRadius={50}
                               paddingAngle={2}
                               dataKey="value"
                               label={({ value }) => `${value}%`}
+                              labelStyle={{ fontSize: '12px' }}
                             >
                               {pieData.map((entry, index) => (
                                 <Cell key={`cell-${index}`} fill={entry.fill} />
@@ -401,26 +402,32 @@ export default function PotentialCalculator() {
                         </ResponsiveContainer>
                       </div>
                     </CardContent>
-                    <CardFooter className="pt-0 justify-center">
-                      <p className="text-sm text-gray-500 text-center">
+                    <CardFooter className="p-4 pt-0 justify-center">
+                      <p className="text-xs sm:text-sm text-gray-500 text-center">
                         <span className="font-medium text-primary">{categoryInfo.avgMargin}%</span> margin on your sales
                       </p>
                     </CardFooter>
                   </Card>
                   
                   <Card className="md:col-span-2">
-                    <CardHeader className="py-3">
+                    <CardHeader className="p-4">
                       <CardTitle className="text-sm">Revenue Breakdown</CardTitle>
                     </CardHeader>
-                    <CardContent className="pt-0">
-                      <div className="h-[200px]">
+                    <CardContent className="p-4 pt-0">
+                      <div className="h-[180px] sm:h-[200px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={monthlyRevenueData}>
+                          <BarChart 
+                            data={monthlyRevenueData}
+                            margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+                          >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis tickFormatter={(value) => `₹${(value/1000)}k`} />
+                            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                            <YAxis 
+                              tickFormatter={(value) => `₹${(value/1000)}k`} 
+                              tick={{ fontSize: 12 }}
+                            />
                             <Tooltip content={<CustomTooltip />} />
-                            <Legend />
+                            <Legend wrapperStyle={{ fontSize: '12px' }} />
                             <Bar dataKey="profit" name="Your Profit" stackId="a" fill="#4f46e5" />
                             <Bar dataKey="revenue" name="Platform Cost" stackId="a" fill="#e5e7eb" />
                           </BarChart>
@@ -431,19 +438,28 @@ export default function PotentialCalculator() {
                 </div>
                 
                 <Card>
-                  <CardHeader className="py-3">
+                  <CardHeader className="p-4">
                     <CardTitle className="text-sm flex items-center">
                       <TrendingUp className="h-4 w-4 mr-2 text-primary" /> 
                       12-Month Profit Projection
                     </CardTitle>
                   </CardHeader>
-                  <CardContent className="pt-0">
-                    <div className="h-[200px]">
+                  <CardContent className="p-4 pt-0">
+                    <div className="h-[180px] sm:h-[200px]">
                       <ResponsiveContainer width="100%" height="100%">
-                        <AreaChart data={projectionData}>
+                        <AreaChart 
+                          data={projectionData}
+                          margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+                        >
                           <CartesianGrid strokeDasharray="3 3" />
-                          <XAxis dataKey="month" label={{ value: 'Month', position: 'insideBottom', offset: -5 }} />
-                          <YAxis tickFormatter={(value) => `₹${(value/1000)}k`} />
+                          <XAxis 
+                            dataKey="month" 
+                            tick={{ fontSize: 12 }}
+                          />
+                          <YAxis 
+                            tickFormatter={(value) => `₹${(value/1000)}k`} 
+                            tick={{ fontSize: 12 }} 
+                          />
                           <Tooltip content={<CustomTooltip />} />
                           <Area 
                             type="monotone" 
@@ -462,7 +478,7 @@ export default function PotentialCalculator() {
                       </ResponsiveContainer>
                     </div>
                     <div className="text-center mt-4">
-                      <p className="text-sm text-gray-500">
+                      <p className="text-xs sm:text-sm text-gray-500">
                         Showing <span className="font-medium text-primary capitalize">{viewMode}</span> growth projection ({viewMode === 'conservative' ? '5%' : viewMode === 'moderate' ? '10%' : '15%'} monthly growth)
                       </p>
                     </div>
@@ -473,25 +489,28 @@ export default function PotentialCalculator() {
               <TabsContent value="growth" className="h-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card>
-                    <CardHeader>
-                      <CardTitle>Monthly Orders Growth</CardTitle>
-                      <CardDescription>Projected order volume growth over 12 months</CardDescription>
+                    <CardHeader className="p-4">
+                      <CardTitle className="text-base">Monthly Orders Growth</CardTitle>
+                      <CardDescription className="text-xs">Projected order volume growth over 12 months</CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <div className="h-[300px]">
+                    <CardContent className="p-4 pt-0">
+                      <div className="h-[250px] sm:h-[300px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={projectionData}>
+                          <LineChart 
+                            data={projectionData} 
+                            margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+                          >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="month" />
-                            <YAxis />
+                            <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                            <YAxis tick={{ fontSize: 12 }} />
                             <Tooltip />
-                            <Legend />
+                            <Legend wrapperStyle={{ fontSize: '12px' }} />
                             <Line 
                               type="monotone" 
                               dataKey="orders" 
                               name="Monthly Orders"
                               stroke="#f59e0b" 
-                              activeDot={{ r: 8 }} 
+                              activeDot={{ r: 6 }} 
                             />
                           </LineChart>
                         </ResponsiveContainer>
@@ -500,25 +519,28 @@ export default function PotentialCalculator() {
                   </Card>
                   
                   <Card>
-                    <CardHeader>
-                      <CardTitle>Revenue Growth</CardTitle>
-                      <CardDescription>Projected revenue growth over 12 months</CardDescription>
+                    <CardHeader className="p-4">
+                      <CardTitle className="text-base">Revenue Growth</CardTitle>
+                      <CardDescription className="text-xs">Projected revenue growth over 12 months</CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <div className="h-[300px]">
+                    <CardContent className="p-4 pt-0">
+                      <div className="h-[250px] sm:h-[300px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <LineChart data={projectionData}>
+                          <LineChart 
+                            data={projectionData}
+                            margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+                          >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="month" />
-                            <YAxis tickFormatter={(value) => `₹${(value/1000)}k`} />
+                            <XAxis dataKey="month" tick={{ fontSize: 12 }} />
+                            <YAxis tickFormatter={(value) => `₹${(value/1000)}k`} tick={{ fontSize: 12 }} />
                             <Tooltip />
-                            <Legend />
+                            <Legend wrapperStyle={{ fontSize: '12px' }} />
                             <Line 
                               type="monotone" 
                               dataKey="revenue" 
                               name="Monthly Revenue"
                               stroke="#10b981" 
-                              activeDot={{ r: 8 }} 
+                              activeDot={{ r: 6 }} 
                             />
                           </LineChart>
                         </ResponsiveContainer>
@@ -562,20 +584,34 @@ export default function PotentialCalculator() {
               <TabsContent value="time" className="h-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <Card>
-                    <CardHeader>
-                      <CardTitle>Time vs. Earnings</CardTitle>
-                      <CardDescription>See how your time investment translates to earnings</CardDescription>
+                    <CardHeader className="p-4">
+                      <CardTitle className="text-base">Time vs. Earnings</CardTitle>
+                      <CardDescription className="text-xs">See how your time investment translates to earnings</CardDescription>
                     </CardHeader>
-                    <CardContent>
-                      <div className="h-[300px]">
+                    <CardContent className="p-4 pt-0">
+                      <div className="h-[250px] sm:h-[300px]">
                         <ResponsiveContainer width="100%" height="100%">
-                          <BarChart data={timeInvestmentData}>
+                          <BarChart 
+                            data={timeInvestmentData}
+                            margin={{ top: 5, right: 5, left: 0, bottom: 5 }}
+                          >
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" />
-                            <YAxis yAxisId="left" orientation="left" stroke="#4f46e5" />
-                            <YAxis yAxisId="right" orientation="right" stroke="#10b981" tickFormatter={(value) => `₹${(value/1000)}k`} />
+                            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+                            <YAxis 
+                              yAxisId="left" 
+                              orientation="left" 
+                              stroke="#4f46e5" 
+                              tick={{ fontSize: 12 }}
+                            />
+                            <YAxis 
+                              yAxisId="right" 
+                              orientation="right" 
+                              stroke="#10b981" 
+                              tickFormatter={(value) => `₹${(value/1000)}k`} 
+                              tick={{ fontSize: 12 }}
+                            />
                             <Tooltip />
-                            <Legend />
+                            <Legend wrapperStyle={{ fontSize: '12px' }} />
                             <Bar yAxisId="left" dataKey="hours" name="Hours Invested" fill="#4f46e5" />
                             <Bar yAxisId="right" dataKey="earnings" name="Weekly Earnings" fill="#10b981" />
                           </BarChart>

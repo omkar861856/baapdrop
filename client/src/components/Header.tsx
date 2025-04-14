@@ -28,9 +28,15 @@ export default function Header() {
   };
 
   const handleNavClick = (id: string) => {
-    scrollToElement(id);
+    // Slight delay for mobile menu to ensure DOM is updated before scrolling
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
+      // Add a small delay before scrolling on mobile
+      setTimeout(() => {
+        scrollToElement(id);
+      }, 100);
+    } else {
+      scrollToElement(id);
     }
   };
 
