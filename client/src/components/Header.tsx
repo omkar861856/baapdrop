@@ -45,7 +45,7 @@ export default function Header() {
       className={`sticky top-0 z-50 transition-all duration-300 ${
         scrolled 
           ? "bg-white/95 backdrop-blur-sm shadow-md py-2" 
-          : "bg-transparent py-4"
+          : "bg-gradient-to-r from-[#ffebf1] via-white to-white py-4"
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -58,7 +58,12 @@ export default function Header() {
           >
             {/* Logo */}
             <a href="#" className="flex items-center" onClick={() => handleNavClick("hero")}>
-              <span className="text-primary text-2xl font-bold">BaapDrop</span>
+              <div className="flex items-center">
+                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-2">
+                  <span className="text-white font-bold text-xl">B</span>
+                </div>
+                <span className="text-primary text-2xl font-bold">BaapDrop</span>
+              </div>
             </a>
           </motion.div>
           
