@@ -129,7 +129,7 @@ export default function PotentialCalculator() {
     
     // Generate pie chart data
     const pieData = [
-      { name: "Your Profit", value: margin * 100, fill: "#4f46e5" },
+      { name: "Your Profit", value: margin * 100, fill: "#E40145" },
       { name: "Platform Cost", value: 100 - (margin * 100), fill: "#e5e7eb" }
     ];
     setPieData(pieData);
@@ -427,7 +427,7 @@ export default function PotentialCalculator() {
                             />
                             <Tooltip content={<CustomTooltip />} />
                             <Legend wrapperStyle={{ fontSize: '12px' }} />
-                            <Bar dataKey="profit" name="Your Profit" stackId="a" fill="#4f46e5" />
+                            <Bar dataKey="profit" name="Your Profit" stackId="a" fill="#E40145" />
                             <Bar dataKey="revenue" name="Platform Cost" stackId="a" fill="#e5e7eb" />
                           </BarChart>
                         </ResponsiveContainer>
@@ -464,13 +464,13 @@ export default function PotentialCalculator() {
                             type="monotone" 
                             dataKey="profit" 
                             name="Monthly Profit"
-                            stroke="#4f46e5" 
+                            stroke="#E40145" 
                             fill="url(#colorProfit)" 
                           />
                           <defs>
                             <linearGradient id="colorProfit" x1="0" y1="0" x2="0" y2="1">
-                              <stop offset="5%" stopColor="#4f46e5" stopOpacity={0.8}/>
-                              <stop offset="95%" stopColor="#4f46e5" stopOpacity={0.1}/>
+                              <stop offset="5%" stopColor="#E40145" stopOpacity={0.8}/>
+                              <stop offset="95%" stopColor="#E40145" stopOpacity={0.1}/>
                             </linearGradient>
                           </defs>
                         </AreaChart>
@@ -599,7 +599,7 @@ export default function PotentialCalculator() {
                             <YAxis 
                               yAxisId="left" 
                               orientation="left" 
-                              stroke="#4f46e5" 
+                              stroke="#E40145" 
                               tick={{ fontSize: 12 }}
                             />
                             <YAxis 
@@ -611,7 +611,7 @@ export default function PotentialCalculator() {
                             />
                             <Tooltip />
                             <Legend wrapperStyle={{ fontSize: '12px' }} />
-                            <Bar yAxisId="left" dataKey="hours" name="Hours Invested" fill="#4f46e5" />
+                            <Bar yAxisId="left" dataKey="hours" name="Hours Invested" fill="#E40145" />
                             <Bar yAxisId="right" dataKey="earnings" name="Weekly Earnings" fill="#10b981" />
                           </BarChart>
                         </ResponsiveContainer>

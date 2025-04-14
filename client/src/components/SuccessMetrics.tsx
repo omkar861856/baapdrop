@@ -777,7 +777,7 @@ export default function SuccessMetrics() {
                             <div className="text-sm text-primary">X</div>
                           </div>
                         </div>
-                        <p className="text-gray-600">Our platform allows for <span className="font-semibold text-orange-500">10X scaling</span> without additional infrastructure investment</p>
+                        <p className="text-gray-600">Our platform allows for <span className="font-semibold text-primary">10X scaling</span> without additional infrastructure investment</p>
                       </div>
                     </CardContent>
                   </Card>
