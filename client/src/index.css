@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+  }
+
+  .scale-hover {
+    @apply transition-transform duration-300;
+  }
+
+  .scale-hover:hover {
+    @apply transform scale-[1.03];
+  }
+
+  .testimonial-card {
+    @apply transition-transform duration-300;
+  }
+
+  .testimonial-card:hover {
+    @apply transform -translate-y-1;
+  }
+}
