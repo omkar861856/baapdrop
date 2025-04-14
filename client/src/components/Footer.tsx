@@ -169,13 +169,20 @@ export default function Footer() {
             <h3 className="text-xl font-bold mb-6">Resources</h3>
             <ul className="space-y-4">
               {[
-                "Help Center", "Reseller Guide", "Product Catalog", 
-                "Shipping Policy", "Refund Policy", "FAQ"
+                { label: "Pricing", url: "#pricing" },
+                { label: "Demo Stores", url: "#demo-stores" },
+                { label: "Ecommerce Features", url: "#features" },
+                { label: "About Affiliate", url: "#affiliate" },
+                { label: "Affiliate Registration/Login", url: "#affiliate-login" },
+                { label: "Terms & Conditions", url: "#terms" },
+                { label: "Privacy Policy", url: "#privacy" },
+                { label: "Refund Policy", url: "#refund" },
+                { label: "Blog", url: "#blog" }
               ].map((item, index) => (
                 <li key={index}>
-                  <a href="#" className="text-gray-300 hover:text-white flex items-center group transition duration-300">
+                  <a href={item.url} className="text-gray-300 hover:text-white flex items-center group transition duration-300">
                     <ChevronRight className="h-4 w-4 mr-2 text-primary-400 group-hover:translate-x-1 transition-transform duration-300" />
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -183,32 +190,37 @@ export default function Footer() {
           </div>
           
           <div>
-            <h3 className="text-xl font-bold mb-6">Contact Us</h3>
+            <h3 className="text-xl font-bold mb-6">More Information</h3>
             <ul className="space-y-4">
-              <li className="flex items-start">
-                <Mail className="h-5 w-5 mr-3 mt-0.5 text-primary-400" />
-                <span className="text-gray-300">support@baapdrop.com</span>
-              </li>
-              <li className="flex items-start">
-                <Phone className="h-5 w-5 mr-3 mt-0.5 text-primary-400" />
-                <span className="text-gray-300">+91 98765 43210</span>
-              </li>
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 mr-3 mt-0.5 text-primary-400" />
-                <span className="text-gray-300">
-                  123 Business Hub, Floor 5<br />
-                  Andheri East, Mumbai 400069<br />
-                  Maharashtra, India
-                </span>
-              </li>
+              {[
+                { label: "Why Trust BaapDrop?", url: "#why-trust" },
+                { label: "Contact Us", url: "#contact" },
+                { label: "About us", url: "#about" },
+                { label: "BaapDrop vs Others", url: "#comparison" },
+                { label: "Become our supplier", url: "#supplier" },
+                { label: "Invest @ baapstore", url: "#invest" }
+              ].map((item, index) => (
+                <li key={index}>
+                  <a href={item.url} className="text-gray-300 hover:text-white flex items-center group transition duration-300">
+                    <ChevronRight className="h-4 w-4 mr-2 text-primary-400 group-hover:translate-x-1 transition-transform duration-300" />
+                    {item.label}
+                  </a>
+                </li>
+              ))}
             </ul>
             
             <div className="mt-6 pt-6 border-t border-white/10">
-              <h4 className="font-semibold mb-3">Customer Support Hours</h4>
-              <p className="text-gray-300 text-sm">
-                Monday - Saturday: 10:00 AM - 8:00 PM<br />
-                Sunday: 10:00 AM - 5:00 PM
-              </p>
+              <h4 className="font-semibold mb-3">Contact Information</h4>
+              <ul className="space-y-3">
+                <li className="flex items-start">
+                  <Mail className="h-5 w-5 mr-3 mt-0.5 text-primary-400" />
+                  <span className="text-gray-300">support@baapdrop.com</span>
+                </li>
+                <li className="flex items-start">
+                  <Phone className="h-5 w-5 mr-3 mt-0.5 text-primary-400" />
+                  <span className="text-gray-300">+91 98765 43210</span>
+                </li>
+              </ul>
             </div>
           </div>
         </div>
