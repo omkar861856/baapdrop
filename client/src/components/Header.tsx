@@ -62,6 +62,7 @@ export default function Header() {
               { id: "how-it-works", label: "How It Works" },
               { id: "why-us", label: "Why Choose Us" },
               { id: "products", label: "Products" },
+              { id: "calculator", label: "Profit Calculator" },
               { id: "testimonials", label: "Success Stories" }
             ].map((item, index) => (
               <motion.a 
@@ -152,6 +153,7 @@ export default function Header() {
                 { id: "how-it-works", label: "How It Works" },
                 { id: "why-us", label: "Why Choose Us" },
                 { id: "products", label: "Products" },
+                { id: "calculator", label: "Profit Calculator" },
                 { id: "testimonials", label: "Success Stories" }
               ].map((item, index) => (
                 <motion.a 

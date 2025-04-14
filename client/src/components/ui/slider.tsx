@@ -23,4 +23,28 @@ const Slider = React.forwardRef<
 ))
 Slider.displayName = SliderPrimitive.Root.displayName
 
-export { Slider }
+const SliderThumb = SliderPrimitive.Thumb
+const SliderTrack = SliderPrimitive.Track
+const SliderRange = SliderPrimitive.Range
+const SliderMark = ({ value, label }: { value: number, label: string }) => (
+  <div
+    className="absolute text-center"
+    style={{
+      left: `${value}%`,
+      transform: 'translateX(-50%)',
+    }}
+  >
+    <div className="text-xs text-gray-500">{label}</div>
+  </div>
+)
+
+const SliderFilledTrack = SliderPrimitive.Range
+
+export { 
+  Slider, 
+  SliderThumb, 
+  SliderTrack,
+  SliderRange,
+  SliderFilledTrack,
+  SliderMark
+}
