@@ -3,10 +3,13 @@ import { Button } from "@/components/ui/button";
 import { scrollToElement } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 import { PhoneCall, Download, Menu, X } from "lucide-react";
+import { useLocation, useRoute, Link } from "wouter";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [location] = useLocation();
+  const [isProductsPage] = useRoute("/products");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +31,12 @@ export default function Header() {
   };
 
   const handleNavClick = (id: string) => {
+    // If we're on the products page, navigate back to home first
+    if (isProductsPage) {
+      window.location.href = `/#${id}`;
+      return;
+    }
+    
     // Slight delay for mobile menu to ensure DOM is updated before scrolling
     if (mobileMenuOpen) {
       setMobileMenuOpen(false);
@@ -57,14 +66,25 @@ export default function Header() {
             transition={{ duration: 0.3 }}
           >
             {/* Logo */}
-            <a href="#" className="flex items-center" onClick={() => handleNavClick("hero")}>
-              <div className="flex items-center">
-                <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-2">
-                  <span className="text-white font-bold text-xl">B</span>
+            {isProductsPage ? (
+              <Link href="/" className="flex items-center">
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-2">
+                    <span className="text-white font-bold text-xl">B</span>
+                  </div>
+                  <span className="text-primary text-2xl font-bold">BaapDrop</span>
                 </div>
-                <span className="text-primary text-2xl font-bold">BaapDrop</span>
-              </div>
-            </a>
+              </Link>
+            ) : (
+              <a href="#" className="flex items-center" onClick={() => handleNavClick("hero")}>
+                <div className="flex items-center">
+                  <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center mr-2">
+                    <span className="text-white font-bold text-xl">B</span>
+                  </div>
+                  <span className="text-primary text-2xl font-bold">BaapDrop</span>
+                </div>
+              </a>
+            )}
           </motion.div>
           
           {/* Desktop Navigation */}
