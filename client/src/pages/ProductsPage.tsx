@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import Header from "@/components/Header";
@@ -20,22 +20,32 @@ import {
 } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
 import {
-  ShoppingBag,
-  Truck,
-  Package,
-  Search,
-  Star,
-  Filter,
-  Tag,
-  ArrowUpRight,
-  ChevronLeft,
-  Heart,
-  TrendingUp,
-  Percent,
-  ArrowRight,
-  Phone,
-  Info,
-  Clock
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Progress } from "@/components/ui/progress";
+import { Separator } from "@/components/ui/separator";
+import { Badge as BadgeIcon, ShoppingBag, Truck, Package, Search, Star, Filter, Tag, 
+  ArrowUpRight, ChevronLeft, Heart, TrendingUp, Percent, ArrowRight, Phone, Info, 
+  Clock, CheckCircle, Mail, ChevronRight, BarChart2, DollarSign
 } from "lucide-react";
 import { scrollToElement } from "@/lib/utils";
 
@@ -487,76 +497,377 @@ const products: Product[] = [
   }
 ];
 
+// Calculate profit calculator
+const ProfitCalculator = ({ product }: { product: Product }) => {
+  const [quantity, setQuantity] = useState(10);
+  const [sellingPrice, setSellingPrice] = useState(Math.round(product.price * 0.9));
+  
+  const totalCost = product.wholesalePrice * quantity;
+  const totalRevenue = sellingPrice * quantity;
+  const totalProfit = totalRevenue - totalCost;
+  const profitMargin = Math.round((totalProfit / totalRevenue) * 100);
+  
+  return (
+    <div className="bg-gray-50 p-4 rounded-lg">
+      <h3 className="font-medium mb-3 flex items-center">
+        <BarChart2 className="h-4 w-4 mr-2 text-primary" />
+        Profit Calculator
+      </h3>
+      
+      <div className="space-y-4">
+        <div>
+          <label className="text-sm text-gray-600 mb-1 block">Quantity</label>
+          <div className="flex items-center">
+            <input
+              type="range"
+              min="1"
+              max="100"
+              value={quantity}
+              onChange={(e) => setQuantity(parseInt(e.target.value))}
+              className="w-full"
+            />
+            <span className="ml-2 text-sm font-medium">{quantity} units</span>
+          </div>
+        </div>
+        
+        <div>
+          <label className="text-sm text-gray-600 mb-1 block">Your Selling Price (₹)</label>
+          <input
+            type="number"
+            value={sellingPrice}
+            onChange={(e) => setSellingPrice(parseInt(e.target.value) || 0)}
+            className="w-full p-2 border rounded-md"
+          />
+        </div>
+        
+        <div className="grid grid-cols-2 gap-3 mt-4">
+          <div className="bg-white p-3 rounded-md border">
+            <span className="text-xs text-gray-500 block">Total Cost</span>
+            <span className="text-lg font-semibold">₹{totalCost.toLocaleString()}</span>
+          </div>
+          <div className="bg-white p-3 rounded-md border">
+            <span className="text-xs text-gray-500 block">Total Revenue</span>
+            <span className="text-lg font-semibold">₹{totalRevenue.toLocaleString()}</span>
+          </div>
+          <div className="bg-white p-3 rounded-md border">
+            <span className="text-xs text-gray-500 block">Profit Margin</span>
+            <span className="text-lg font-semibold text-green-600">{profitMargin}%</span>
+          </div>
+          <div className="bg-primary/10 p-3 rounded-md border border-primary/30">
+            <span className="text-xs text-primary/80 block">Your Profit</span>
+            <span className="text-lg font-semibold text-primary">₹{totalProfit.toLocaleString()}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 // Product item component
 const ProductItem = ({ product }: { product: Product }) => {
+  const [open, setOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState("details");
+  
   return (
-    <motion.div 
-      className="product-card h-full"
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-    >
-      <Card className="h-full flex flex-col overflow-hidden shadow-md hover:shadow-lg transition-shadow">
-        <div className="relative">
-          <img 
-            src={product.images[0]} 
-            alt={product.name}
-            className="h-60 w-full object-cover"
-          />
-          {product.trending && (
-            <Badge className="absolute top-3 right-3 bg-primary text-white">
-              <TrendingUp className="h-3 w-3 mr-1" /> Trending
-            </Badge>
-          )}
-          <div className="absolute top-3 left-3 flex items-center bg-white/90 text-primary rounded-full py-0.5 px-2 text-xs font-medium">
-            <Percent className="h-3 w-3 mr-1" />
-            {product.margin}% margin
+    <>
+      <motion.div 
+        className="product-card h-full"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+        whileHover={{ y: -5, transition: { duration: 0.2 } }}
+      >
+        <Card className="h-full flex flex-col overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+          <div className="relative">
+            <img 
+              src={product.images[0]} 
+              alt={product.name}
+              className="h-60 w-full object-cover"
+            />
+            {product.trending && (
+              <Badge className="absolute top-3 right-3 bg-primary text-white">
+                <TrendingUp className="h-3 w-3 mr-1" /> Trending
+              </Badge>
+            )}
+            <div className="absolute top-3 left-3 flex items-center bg-white/90 text-primary rounded-full py-0.5 px-2 text-xs font-medium">
+              <Percent className="h-3 w-3 mr-1" />
+              {product.margin}% margin
+            </div>
+            <Button variant="ghost" size="icon" className="absolute bottom-3 right-3 bg-white/80 hover:bg-white rounded-full shadow-sm">
+              <Heart className="h-4 w-4 text-pink-500" />
+            </Button>
           </div>
-          <Button variant="ghost" size="icon" className="absolute bottom-3 right-3 bg-white/80 hover:bg-white rounded-full shadow-sm">
-            <Heart className="h-4 w-4 text-pink-500" />
-          </Button>
+          <CardHeader className="pb-2">
+            <div className="flex justify-between items-start">
+              <CardTitle className="text-base font-medium line-clamp-2">{product.name}</CardTitle>
+            </div>
+            <CardDescription className="text-xs">
+              {product.category} • {product.subcategory}
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="pb-2 flex-grow">
+            <div className="flex items-center mb-2">
+              <div className="flex items-center mr-3">
+                {Array(5).fill(0).map((_, i) => (
+                  <Star 
+                    key={i} 
+                    className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
+                  />
+                ))}
+              </div>
+              <span className="text-xs text-gray-500">{product.reviews} reviews</span>
+            </div>
+            <p className="text-sm text-gray-600 line-clamp-2 mb-3">{product.description}</p>
+            <div className="flex justify-between items-center mt-auto">
+              <div className="text-gray-600 font-semibold">
+                <span className="text-sm line-through text-gray-400">₹{product.price}</span> 
+                <span className="text-primary ml-1">₹{product.wholesalePrice}</span>
+              </div>
+              <div className="flex items-center text-xs text-gray-500">
+                <ShoppingBag className="h-3 w-3 mr-1" />
+                {product.sales}+ sold
+              </div>
+            </div>
+          </CardContent>
+          <CardFooter className="border-t pt-3">
+            <Button className="w-full" size="sm" onClick={() => setOpen(true)}>
+              View Details
+              <ArrowRight className="h-4 w-4 ml-1" />
+            </Button>
+          </CardFooter>
+        </Card>
+      </motion.div>
+      
+      {/* Product Details Modal */}
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="text-2xl">{product.name}</DialogTitle>
+            <DialogDescription className="flex items-center">
+              <Badge variant="outline" className="mr-2">
+                {product.category}
+              </Badge>
+              <Badge variant="outline">
+                {product.subcategory}
+              </Badge>
+              <div className="ml-auto flex items-center text-yellow-500">
+                <Star className="h-4 w-4 fill-yellow-500 mr-1" />
+                <span className="font-medium">{product.rating}</span>
+                <span className="text-gray-500 text-xs ml-1">({product.reviews} reviews)</span>
+              </div>
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 my-4">
+            <div>
+              <Carousel className="w-full">
+                <CarouselContent>
+                  {product.images.map((image, index) => (
+                    <CarouselItem key={index}>
+                      <div className="p-1">
+                        <img 
+                          src={image} 
+                          alt={`${product.name} - image ${index+1}`}
+                          className="w-full h-64 sm:h-80 object-contain rounded-md"
+                        />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+                <CarouselPrevious />
+                <CarouselNext />
+              </Carousel>
+              
+              <div className="mt-4 grid grid-cols-2 gap-4">
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-sm font-medium mb-1 flex items-center">
+                    <ShoppingBag className="h-4 w-4 mr-1 text-primary" />
+                    Sales
+                  </h3>
+                  <p className="text-2xl font-bold">{product.sales}+</p>
+                  <p className="text-xs text-gray-500">Units sold</p>
+                </div>
+                <div className="bg-gray-50 p-3 rounded-lg">
+                  <h3 className="text-sm font-medium mb-1 flex items-center">
+                    <Percent className="h-4 w-4 mr-1 text-green-600" />
+                    Profit Margin
+                  </h3>
+                  <p className="text-2xl font-bold text-green-600">{product.margin}%</p>
+                  <p className="text-xs text-gray-500">Average margin</p>
+                </div>
+              </div>
+              
+              <div className="mt-4">
+                <div className="flex items-center justify-between mb-2">
+                  <div className="font-medium">Trending Status</div>
+                  <Badge variant={product.trending ? "default" : "outline"} className={product.trending ? "bg-primary" : ""}>
+                    {product.trending ? "Trending Product" : "Standard Product"}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between mb-2">
+                  <div className="font-medium">Inventory Status</div>
+                  <Badge variant={product.inStock ? "default" : "destructive"} className={product.inStock ? "bg-green-600" : ""}>
+                    {product.inStock ? "In Stock" : "Out of Stock"}
+                  </Badge>
+                </div>
+                <div className="flex items-center justify-between">
+                  <div className="font-medium">Shipping</div>
+                  <div className="text-sm">
+                    {product.shipping.domestic === 0 ? (
+                      <span className="text-green-600 font-medium">Free Domestic</span>
+                    ) : (
+                      <span>₹{product.shipping.domestic} Domestic</span>
+                    )}
+                    <span className="mx-1">•</span>
+                    <span>₹{product.shipping.international} International</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <Tabs defaultValue="details" className="w-full" onValueChange={setActiveTab}>
+                <TabsList className="grid w-full grid-cols-3">
+                  <TabsTrigger value="details">Details</TabsTrigger>
+                  <TabsTrigger value="features">Features</TabsTrigger>
+                  <TabsTrigger value="profit">Profit Calc</TabsTrigger>
+                </TabsList>
+                
+                <TabsContent value="details" className="mt-4">
+                  <div className="text-lg font-medium mb-3">About this product</div>
+                  <p className="text-gray-700">{product.description}</p>
+                  
+                  <div className="text-lg font-medium mt-5 mb-3">Pricing</div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="p-4 border rounded-lg text-center">
+                      <div className="text-gray-500 text-sm">Market Price</div>
+                      <div className="text-2xl font-bold line-through text-gray-400">₹{product.price}</div>
+                    </div>
+                    <div className="p-4 border-2 border-primary rounded-lg text-center bg-primary/5">
+                      <div className="text-primary text-sm">Your Price</div>
+                      <div className="text-2xl font-bold text-primary">₹{product.wholesalePrice}</div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-5">
+                    <div className="text-lg font-medium mb-3">Tags</div>
+                    <div className="flex flex-wrap gap-2">
+                      {product.tags.map((tag, index) => (
+                        <Badge key={index} variant="secondary" className="text-xs">
+                          <Tag className="h-3 w-3 mr-1" />
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="features" className="mt-4">
+                  <div className="text-lg font-medium mb-3">Key Features</div>
+                  <ul className="space-y-2">
+                    {product.features.map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <CheckCircle className="h-5 w-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <Separator className="my-6" />
+                  
+                  <div className="text-lg font-medium mb-3">Why Sell This Product</div>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    <div className="p-3 border rounded-md flex items-center">
+                      <DollarSign className="h-5 w-5 text-green-500 mr-2" />
+                      <div>
+                        <div className="font-medium">High Profit Margin</div>
+                        <div className="text-sm text-gray-500">Make {product.margin}% on each sale</div>
+                      </div>
+                    </div>
+                    <div className="p-3 border rounded-md flex items-center">
+                      <TrendingUp className="h-5 w-5 text-blue-500 mr-2" />
+                      <div>
+                        <div className="font-medium">Proven Demand</div>
+                        <div className="text-sm text-gray-500">{product.sales}+ units already sold</div>
+                      </div>
+                    </div>
+                    <div className="p-3 border rounded-md flex items-center">
+                      <Truck className="h-5 w-5 text-purple-500 mr-2" />
+                      <div>
+                        <div className="font-medium">Hassle-Free Shipping</div>
+                        <div className="text-sm text-gray-500">We handle all logistics for you</div>
+                      </div>
+                    </div>
+                    <div className="p-3 border rounded-md flex items-center">
+                      <Star className="h-5 w-5 text-yellow-500 mr-2" />
+                      <div>
+                        <div className="font-medium">Highly Rated</div>
+                        <div className="text-sm text-gray-500">{product.rating}/5 from {product.reviews} customers</div>
+                      </div>
+                    </div>
+                  </div>
+                </TabsContent>
+                
+                <TabsContent value="profit" className="mt-4">
+                  <ProfitCalculator product={product} />
+                </TabsContent>
+              </Tabs>
+              
+              <div className="mt-6 space-y-4">
+                <Button className="w-full" size="lg" onClick={() => scrollToElement("join-now")}>
+                  Become a Reseller to Sell This Product
+                  <ArrowUpRight className="ml-2 h-4 w-4" />
+                </Button>
+                
+                <div className="text-center text-sm text-gray-500 flex items-center justify-center">
+                  <Mail className="h-4 w-4 mr-1" />
+                  Have questions about this product?
+                  <Button variant="link" className="p-0 h-auto ml-1 text-primary" onClick={() => scrollToElement("join-now")}>
+                    Contact Us
+                  </Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+    </>
+  );
+};
+
+// ProductStats component to show product statistics
+const ProductStats = () => {
+  // Calculate stats from our product data
+  const totalProducts = products.length;
+  const avgMargin = Math.round(products.reduce((acc, product) => acc + product.margin, 0) / totalProducts);
+  const trendingCount = products.filter(p => p.trending).length;
+  const avgRating = (products.reduce((acc, product) => acc + product.rating, 0) / totalProducts).toFixed(1);
+  
+  return (
+    <div className="bg-white rounded-lg shadow-sm p-5 mb-6">
+      <h3 className="text-lg font-medium mb-4 flex items-center">
+        <BadgeIcon className="h-5 w-5 mr-2 text-primary" />
+        Product Statistics
+      </h3>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div className="text-center p-3 bg-gray-50 rounded-lg">
+          <div className="text-3xl font-bold text-primary mb-1">{totalProducts}</div>
+          <div className="text-sm text-gray-600">Total Products</div>
         </div>
-        <CardHeader className="pb-2">
-          <div className="flex justify-between items-start">
-            <CardTitle className="text-base font-medium line-clamp-2">{product.name}</CardTitle>
-          </div>
-          <CardDescription className="text-xs">
-            {product.category} • {product.subcategory}
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="pb-2 flex-grow">
-          <div className="flex items-center mb-2">
-            <div className="flex items-center mr-3">
-              {Array(5).fill(0).map((_, i) => (
-                <Star 
-                  key={i} 
-                  className={`h-3 w-3 ${i < Math.floor(product.rating) ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
-                />
-              ))}
-            </div>
-            <span className="text-xs text-gray-500">{product.reviews} reviews</span>
-          </div>
-          <p className="text-sm text-gray-600 line-clamp-2 mb-3">{product.description}</p>
-          <div className="flex justify-between items-center mt-auto">
-            <div className="text-gray-600 font-semibold">
-              <span className="text-sm line-through text-gray-400">₹{product.price}</span> 
-              <span className="text-primary ml-1">₹{product.wholesalePrice}</span>
-            </div>
-            <div className="flex items-center text-xs text-gray-500">
-              <ShoppingBag className="h-3 w-3 mr-1" />
-              {product.sales}+ sold
-            </div>
-          </div>
-        </CardContent>
-        <CardFooter className="border-t pt-3">
-          <Button className="w-full" size="sm" onClick={() => scrollToElement("join-now")}>
-            View Details
-            <ArrowRight className="h-4 w-4 ml-1" />
-          </Button>
-        </CardFooter>
-      </Card>
-    </motion.div>
+        <div className="text-center p-3 bg-gray-50 rounded-lg">
+          <div className="text-3xl font-bold text-green-600 mb-1">{avgMargin}%</div>
+          <div className="text-sm text-gray-600">Average Margin</div>
+        </div>
+        <div className="text-center p-3 bg-gray-50 rounded-lg">
+          <div className="text-3xl font-bold text-blue-600 mb-1">{trendingCount}</div>
+          <div className="text-sm text-gray-600">Trending Items</div>
+        </div>
+        <div className="text-center p-3 bg-gray-50 rounded-lg">
+          <div className="text-3xl font-bold text-yellow-500 mb-1">{avgRating}</div>
+          <div className="text-sm text-gray-600">Average Rating</div>
+        </div>
+      </div>
+    </div>
   );
 };
 
@@ -569,8 +880,29 @@ export default function ProductsPage() {
   
   const categoryParam = getQueryParam('category');
   const [selectedCategory, setSelectedCategory] = useState<string | null>(categoryParam);
+  const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortBy, setSortBy] = useState("trending");
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 2000]);
+  const [marginFilter, setMarginFilter] = useState<number>(0);
+  const [showFilters, setShowFilters] = useState(false);
+  
+  // Get unique subcategories for the selected category
+  const subcategories = useMemo(() => {
+    if (!selectedCategory) return [];
+    const subcats = new Set<string>();
+    products
+      .filter(p => p.category === selectedCategory)
+      .forEach(p => subcats.add(p.subcategory));
+    return Array.from(subcats);
+  }, [selectedCategory]);
+  
+  // Extract all unique subcategories
+  const allSubcategories = useMemo(() => {
+    const subcats = new Set<string>();
+    products.forEach(p => subcats.add(p.subcategory));
+    return Array.from(subcats);
+  }, []);
   
   // Filter products based on search term and category
   const filteredProducts = products.filter(product => {
@@ -742,25 +1074,141 @@ export default function ProductsPage() {
         {/* Products Grid */}
         <section className="py-12">
           <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center mb-6">
-              <h2 className="text-2xl font-bold">
-                {selectedCategory ? 
-                  `${selectedCategory} Products` : 
-                  searchTerm ? 
-                    `Search Results for "${searchTerm}"` : 
-                    "All Products"
-                }
-              </h2>
-              <div className="text-gray-500 text-sm">
-                Showing {sortedProducts.length} of {products.length} products
+            {/* Product Stats Overview */}
+            <ProductStats />
+            
+            <div className="flex flex-wrap justify-between items-center mb-6">
+              <div>
+                <h2 className="text-2xl font-bold">
+                  {selectedCategory ? 
+                    `${selectedCategory} Products` : 
+                    searchTerm ? 
+                      `Search Results for "${searchTerm}"` : 
+                      "All Products"
+                  }
+                </h2>
+                <p className="text-gray-500 text-sm mt-1">
+                  Showing {sortedProducts.length} of {products.length} products
+                </p>
               </div>
+              
+              {/* Additional Filter Button */}
+              <Button 
+                variant="outline" 
+                className="mt-2 sm:mt-0"
+                onClick={() => setShowFilters(!showFilters)}
+              >
+                <Filter className="h-4 w-4 mr-2" />
+                {showFilters ? "Hide Filters" : "More Filters"}
+              </Button>
             </div>
+            
+            {/* Advanced Filters */}
+            {showFilters && (
+              <div className="bg-white p-4 rounded-lg shadow-sm mb-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                {selectedCategory && (
+                  <div>
+                    <h3 className="text-sm font-medium mb-2">Subcategories</h3>
+                    <div className="space-y-1">
+                      <div className="flex items-center">
+                        <input
+                          type="radio"
+                          id="all-subcategories"
+                          checked={selectedSubcategory === null}
+                          onChange={() => setSelectedSubcategory(null)}
+                          className="mr-2"
+                        />
+                        <label htmlFor="all-subcategories" className="text-sm">All Subcategories</label>
+                      </div>
+                      {subcategories.map((subcat, i) => (
+                        <div key={i} className="flex items-center">
+                          <input
+                            type="radio"
+                            id={`subcat-${i}`}
+                            checked={selectedSubcategory === subcat}
+                            onChange={() => setSelectedSubcategory(subcat)}
+                            className="mr-2"
+                          />
+                          <label htmlFor={`subcat-${i}`} className="text-sm">{subcat}</label>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-2">Price Range (₹)</h3>
+                  <div className="px-2">
+                    <div className="flex justify-between text-xs text-gray-500 mb-1">
+                      <span>₹{priceRange[0]}</span>
+                      <span>₹{priceRange[1]}</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="2000"
+                      step="100"
+                      value={priceRange[1]}
+                      onChange={(e) => setPriceRange([priceRange[0], parseInt(e.target.value)])}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+                
+                <div>
+                  <h3 className="text-sm font-medium mb-2">Minimum Profit Margin</h3>
+                  <div className="px-2">
+                    <div className="flex justify-between text-xs text-gray-500 mb-1">
+                      <span>0%</span>
+                      <span>{marginFilter}%</span>
+                    </div>
+                    <input
+                      type="range"
+                      min="0"
+                      max="60"
+                      step="5"
+                      value={marginFilter}
+                      onChange={(e) => setMarginFilter(parseInt(e.target.value))}
+                      className="w-full"
+                    />
+                  </div>
+                </div>
+                
+                <div className="md:col-span-3 flex justify-end pt-2">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="mr-2"
+                    onClick={() => {
+                      setSelectedSubcategory(null);
+                      setPriceRange([0, 2000]);
+                      setMarginFilter(0);
+                    }}
+                  >
+                    Reset Filters
+                  </Button>
+                  <Button 
+                    size="sm"
+                    onClick={() => setShowFilters(false)}
+                  >
+                    Apply Filters
+                  </Button>
+                </div>
+              </div>
+            )}
             
             {sortedProducts.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                {sortedProducts.map((product) => (
-                  <ProductItem key={product.id} product={product} />
-                ))}
+                {sortedProducts
+                  .filter(product => 
+                    (selectedSubcategory === null || product.subcategory === selectedSubcategory) &&
+                    (product.wholesalePrice >= priceRange[0] && product.wholesalePrice <= priceRange[1]) &&
+                    (product.margin >= marginFilter)
+                  )
+                  .map((product) => (
+                    <ProductItem key={product.id} product={product} />
+                  ))
+                }
               </div>
             ) : (
               <div className="text-center py-12">
@@ -772,8 +1220,11 @@ export default function ProductsPage() {
                 <Button onClick={() => {
                   setSearchTerm("");
                   setSelectedCategory(null);
+                  setSelectedSubcategory(null);
+                  setPriceRange([0, 2000]);
+                  setMarginFilter(0);
                 }}>
-                  Reset Filters
+                  Reset All Filters
                 </Button>
               </div>
             )}
