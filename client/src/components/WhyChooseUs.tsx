@@ -23,7 +23,7 @@ const benefits = [
     icon: <TrendingUp className="h-8 w-8" />,
     title: "High Profit Margins",
     description: "Enjoy profits of 30-50% on thousands of high-demand products.",
-    color: "bg-green-500"
+    color: "bg-green-600"
   },
   {
     icon: <Truck className="h-8 w-8" />,
@@ -175,7 +175,7 @@ export default function WhyChooseUs() {
             <Button
               variant="outline"
               size="lg"
-              className="border-primary text-primary hover:bg-primary hover:text-white"
+              className="border-primary text-primary hover:bg-primary hover:text-white font-medium"
               onClick={() => scrollToElement("testimonials")}
             >
               See Success Stories

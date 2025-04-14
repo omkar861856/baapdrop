@@ -240,14 +240,14 @@ export default function Footer() {
         
         {/* Bottom Copyright and Links */}
         <div className="flex flex-col md:flex-row justify-between items-center">
-          <p className="text-gray-400 text-sm mb-6 md:mb-0">
+          <p className="text-gray-300 text-sm mb-6 md:mb-0">
             &copy; {new Date().getFullYear()} BaapDrop. All rights reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition duration-300">Terms of Service</a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition duration-300">Privacy Policy</a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition duration-300">Shipping Policy</a>
-            <a href="#" className="text-gray-400 hover:text-white text-sm transition duration-300">Refund Policy</a>
+            <a href="#" className="text-gray-300 hover:text-white text-sm transition duration-300">Terms of Service</a>
+            <a href="#" className="text-gray-300 hover:text-white text-sm transition duration-300">Privacy Policy</a>
+            <a href="#" className="text-gray-300 hover:text-white text-sm transition duration-300">Shipping Policy</a>
+            <a href="#" className="text-gray-300 hover:text-white text-sm transition duration-300">Refund Policy</a>
           </div>
         </div>
       </div>

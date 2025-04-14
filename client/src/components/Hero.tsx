@@ -222,7 +222,7 @@ export default function Hero() {
               </Button>
               <Button
                 variant="outline"
-                className="bg-white text-primary border-white shadow-lg hover:bg-white/90"
+                className="bg-white text-primary border-white shadow-lg hover:bg-white/90 font-medium"
                 onClick={() => scrollToElement("join-now")}
               >
                 <Download className="mr-2 h-4 w-4" />
