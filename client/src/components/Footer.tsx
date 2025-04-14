@@ -60,7 +60,7 @@ export default function Footer() {
               <input 
                 type="email" 
                 placeholder="Enter your email" 
-                className="bg-white/10 backdrop-blur-sm border border-white/20 py-3 px-4 rounded-lg text-white w-full md:w-2/3"
+                className="bg-white/10 backdrop-blur-sm border border-white/30 py-3 px-4 rounded-lg text-white placeholder:text-white/70 w-full md:w-2/3"
               />
               <Button 
                 className="bg-white text-primary hover:bg-white/90 shadow-lg w-full md:w-auto"
@@ -86,7 +86,7 @@ export default function Footer() {
                 {badge.icon}
               </div>
               <h4 className="font-bold text-lg mb-1">{badge.title}</h4>
-              <p className="text-white/70 text-sm">{badge.desc}</p>
+              <p className="text-white/80 text-sm font-medium">{badge.desc}</p>
             </div>
           ))}
         </div>
@@ -219,7 +219,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Secured Payment Methods</h4>
             <div className="flex flex-wrap gap-3">
               {["Visa", "Mastercard", "PayPal", "UPI", "Net Banking", "Cash on Delivery"].map((payment, index) => (
-                <div key={index} className="bg-white/10 px-4 py-2 rounded-md text-sm">
+                <div key={index} className="bg-white/20 px-4 py-2 rounded-md text-sm font-medium">
                   {payment}
                 </div>
               ))}
@@ -229,7 +229,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Certifications & Partnerships</h4>
             <div className="flex flex-wrap gap-3">
               {["ISO Certified", "Trusted Merchant", "SSL Secured", "MSME Registered"].map((cert, index) => (
-                <div key={index} className="bg-white/10 px-4 py-2 rounded-md text-sm flex items-center">
+                <div key={index} className="bg-white/20 px-4 py-2 rounded-md text-sm font-medium flex items-center">
                   <ShieldCheck className="h-4 w-4 mr-2 text-green-400" />
                   {cert}
                 </div>

@@ -124,12 +124,12 @@ export default function JoinForm() {
                       viewport={{ once: true }}
                       transition={{ duration: 0.3, delay: 0.1 * index + 0.3 }}
                     >
-                      <div className="bg-white/20 p-3 rounded-lg text-white">
+                      <div className="bg-white/30 p-3 rounded-lg text-white">
                         {benefit.icon}
                       </div>
                       <div>
                         <h4 className="text-lg font-semibold">{benefit.title}</h4>
-                        <p className="text-white/80">{benefit.description}</p>
+                        <p className="text-white/90 font-medium">{benefit.description}</p>
                       </div>
                     </motion.div>
                   ))}
