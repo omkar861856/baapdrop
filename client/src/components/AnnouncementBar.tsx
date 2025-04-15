@@ -23,12 +23,12 @@ export default function AnnouncementBar() {
             <div className="flex items-center justify-center space-x-4 text-sm font-medium">
               <span className="flex items-center">
                 <span className="mr-2">🚚</span>
-                <span>Flat ₹39 shipping all over India</span>
+                <span>Shipping to 27,000+ pincodes across India</span>
               </span>
               <span className="hidden md:inline-block">|</span>
               <span className="hidden md:flex items-center">
                 <span className="mr-2">🛍️</span>
-                <span>Over 1.5 lakh+ products available</span>
+                <span>7,000+ product varieties worth ₹100 crores</span>
               </span>
             </div>
             <button

@@ -81,8 +81,9 @@ export default function Hero() {
               transition={{ duration: 0.5, delay: 0.4 }}
             >
               <p className="text-xl lg:text-2xl mb-8 text-white/90">
-                Sell 10,000+ trending products under your own brand name with{" "}
-                <strong>zero inventory</strong> and <strong>zero risk</strong>.
+                Sell 7,000+ trending products worth over ₹100 crores with{" "}
+                <strong>zero inventory investment</strong> and{" "}
+                <strong>50% margin</strong>.
               </p>
             </motion.div>
 
@@ -119,25 +120,25 @@ export default function Hero() {
               <div className="flex items-center">
                 <CheckCircle className="h-5 w-5 mr-2 text-green-400" />
                 <span className="text-sm md:text-base">
-                  No investment required
+                  Wholesale prices for single products
                 </span>
               </div>
               <div className="flex items-center">
                 <CheckCircle className="h-5 w-5 mr-2 text-green-400" />
                 <span className="text-sm md:text-base">
-                  No inventory to manage
+                  Automatic stock & orders sync
                 </span>
               </div>
               <div className="flex items-center">
                 <CheckCircle className="h-5 w-5 mr-2 text-green-400" />
                 <span className="text-sm md:text-base">
-                  Shipping across India
+                  Shipping to 27,000+ pincodes
                 </span>
               </div>
               <div className="flex items-center">
                 <CheckCircle className="h-5 w-5 mr-2 text-green-400" />
                 <span className="text-sm md:text-base">
-                  High profit margins
+                  White-labeled invoices
                 </span>
               </div>
             </motion.div>
@@ -227,8 +228,8 @@ export default function Hero() {
                   <ShoppingBag className="h-5 w-5 text-white" />
                 </div>
                 <div className="text-sm">
-                  <p className="font-semibold text-gray-800">Easy to start</p>
-                  <p className="text-xs text-gray-500">Beginner friendly</p>
+                  <p className="font-semibold text-gray-800">ISO Certified</p>
+                  <p className="text-xs text-gray-500">Since 2016</p>
                 </div>
               </motion.div>
 
@@ -243,10 +244,8 @@ export default function Hero() {
                   <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div className="text-sm">
-                  <p className="font-semibold text-gray-800">
-                    WhatsApp Support
-                  </p>
-                  <p className="text-xs text-gray-500">24/7 assistance</p>
+                  <p className="font-semibold text-gray-800">COD & Prepaid</p>
+                  <p className="text-xs text-gray-500">Payment options</p>
                 </div>
               </motion.div>
             </div>
