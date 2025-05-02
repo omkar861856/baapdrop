@@ -25,12 +25,12 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <Router />
       <Toaster />
-      <WhatsAppChat
+      {/* <WhatsAppChat
         phoneNumber={whatsappConfig.phoneNumber}
         message={whatsappConfig.defaultMessage}
         position={whatsappConfig.position}
         delay={whatsappConfig.delay}
-      />
+      /> */}
     </QueryClientProvider>
   );
 }

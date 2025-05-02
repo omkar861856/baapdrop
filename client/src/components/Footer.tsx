@@ -325,7 +325,7 @@ export default function Footer() {
       {/* Scroll to top button */}
       {showScrollButton && (
         <motion.button
-          className="fixed bottom-8 right-8 bg-primary text-white p-3 rounded-full shadow-lg z-50"
+          className="fixed bottom-8 left-8 bg-primary text-white p-3 rounded-full shadow-lg z-50"
           onClick={scrollToTop}
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
