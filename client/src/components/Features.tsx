@@ -401,7 +401,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/1_StartupTN-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupTN.png')",
                     }}
                   ></div>
                 </div>
@@ -410,7 +410,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/2_startup-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupIndia.png')",
                     }}
                   ></div>
                 </div>
@@ -419,7 +419,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/3_ISO-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/ISO.png')",
                     }}
                   ></div>
                 </div>
@@ -428,7 +428,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/4_certificate-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/GOICertificate.png')",
                     }}
                   ></div>
                 </div>
@@ -437,7 +437,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/5_Forbes-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/Forbes.png')",
                     }}
                   ></div>
                 </div>
@@ -446,7 +446,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/6_business-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/BusinessStandard.png')",
                     }}
                   ></div>
                 </div>
@@ -455,7 +455,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/7_news18-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/News18.png')",
                     }}
                   ></div>
                 </div>
@@ -476,7 +476,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/2_startup-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupIndia.png')",
                     }}
                   ></div>
                 </div>
@@ -485,7 +485,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/3_ISO-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/ISO.png')",
                     }}
                   ></div>
                 </div>
@@ -494,7 +494,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/4_certificate-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/GOICertificate.png')",
                     }}
                   ></div>
                 </div>
@@ -503,7 +503,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/5_Forbes-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/Forbes.png')",
                     }}
                   ></div>
                 </div>
@@ -512,7 +512,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/6_business-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/BusinessStandard.png')",
                     }}
                   ></div>
                 </div>
@@ -521,7 +521,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/7_news18-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/News18.png')",
                     }}
                   ></div>
                 </div>

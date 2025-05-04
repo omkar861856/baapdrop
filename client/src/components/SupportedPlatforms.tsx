@@ -6,37 +6,37 @@ const Companies = () => {
     [
       {
         title: "amazon",
-        src: "../../public/platforms/amazon-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/AmazonLogo.png",
       },
       {
         title: "shopify",
-        src: "../../public/platforms/shopify-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/ShopifyLogo.png",
       },
       {
         title: "woo",
-        src: "../../public/platforms/woocommerce-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/WooCommerceLogo.png",
       },
       {
         title: "opencart",
-        src: "../../public/platforms/opencart-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/OpenCartLogo.png",
       },
     ],
     [
       {
         title: "amazon second",
-        src: "../../public/platforms/amazon-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/AmazonLogo.png",
       },
       {
         title: "shopify second",
-        src: "../../public/platforms/shopify-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/ShopifyLogo.png",
       },
       {
         title: "woo second",
-        src: "../../public/platforms/woocommerce-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/WooCommerceLogo.png",
       },
       {
         title: "opencart second",
-        src: "../../public/platforms/opencart-300x164.png",
+        src: "https://ik.imagekit.io/6aatygthe/Baapstore/OpenCartLogo.png",
       },
     ],
   ]);

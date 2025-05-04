@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 
 export default function MediaRecognition() {
+  const imageKitUrl = "https://ik.imagekit.io/6aatygthe/Baapstore";
   const mediaFeatures = [
     {
       title: "Forbes India",
       description:
         "Featured in Forbes India Outperformers List, Page 39  - Forbes India",
-      image: "../../public/media-recognition/images (3).png",
+      image:  `${imageKitUrl}/Forbes.png`,
       link: "https://cms-subs.forbesindia.com/media/supplement_pdf/march-april-marquee.pdf",
     },
     {
@@ -14,7 +15,7 @@ export default function MediaRecognition() {
       description:
         "Poll merchandise turns contemporary, cellphone covers, night lamps are faves",
       image:
-        "../../public/media-recognition/01aafbeb-64a1-411d-aa9d-dd44c16ff30e.png",
+        `${imageKitUrl}/TOIArticle.png`,
       link: "https://timesofindia.indiatimes.com/city/chennai/poll-merchandise-turns-contemporary-cellphone-covers-night-lamps-are-faves/articleshow/81594966.cms",
     },
     {
@@ -22,14 +23,14 @@ export default function MediaRecognition() {
       description:
         "BAAPSTORE claims its sellers make 300% profits, without inventory investment",
       image:
-        "../../public/media-recognition/YourstoryCoverPic-BigSize-1697697225940.avif",
+       `${imageKitUrl}/YourStory.jpg`,
       link: "https://yourstory.com/2023/10/baapstore-claims-sellers-make-profits-without-inventory-investment",
     },
     {
       title: "Shiprocket",
       description:
         "Featured among the best dropshipping companies in India - Shiprocket",
-      image: "../../public/media-recognition/shiprocket-logo-startuptalky.jpg",
+      image: `${imageKitUrl}/ShiprocketLogo.jpg`,
       link: "https://shiprocket.in/blog/best-dropshipping-companies/",
     },
   ];

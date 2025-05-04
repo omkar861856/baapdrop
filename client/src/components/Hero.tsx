@@ -207,7 +207,7 @@ export default function Hero() {
               />
               <video className="w-full" autoPlay muted controls loop>
                 <source
-                  src="../../public/what-is-dropshipping by-baapstore.mp4"
+                  src="https://ik.imagekit.io/6aatygthe/Baapstore/WhatIsDropshipping.mp4"
                   type="video/mp4"
                 />
                 Your browser does not support the video tag.
