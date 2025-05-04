@@ -531,15 +531,15 @@ export default function Features() {
             </div>
 
             {/* Second Row - Reverse Direction */}
-            <div className="relative flex overflow-hidden py-4 mt-4">
+            <div className="relative flex overflow-hidden py-4">
               <div className="flex whitespace-nowrap animate-marquee-reverse">
-                {/* Second row of logos */}
+                {/* First row of logos */}
                 <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
                   <div
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/8_Yourstory-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupTN.png')",
                     }}
                   ></div>
                 </div>
@@ -548,7 +548,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/9_zee5-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupIndia.png')",
                     }}
                   ></div>
                 </div>
@@ -557,7 +557,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/10_livemint-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/ISO.png')",
                     }}
                   ></div>
                 </div>
@@ -566,7 +566,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/11_theweek-300x300-removebg-preview (1).png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/GOICertificate.png')",
                     }}
                   ></div>
                 </div>
@@ -575,7 +575,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/12_dalalstreet1-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/Forbes.png')",
                     }}
                   ></div>
                 </div>
@@ -584,18 +584,28 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/13_outlook-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/BusinessStandard.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/News18.png')",
                     }}
                   ></div>
                 </div>
 
                 {/* Duplicate logos for seamless scrolling */}
+
                 <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
                   <div
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/8_Yourstory-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupTN.png')",
                     }}
                   ></div>
                 </div>
@@ -604,7 +614,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/9_zee5-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupIndia.png')",
                     }}
                   ></div>
                 </div>
@@ -613,7 +623,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/10_livemint-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/ISO.png')",
                     }}
                   ></div>
                 </div>
@@ -622,7 +632,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/11_theweek-300x300-removebg-preview (1).png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/GOICertificate.png')",
                     }}
                   ></div>
                 </div>
@@ -631,7 +641,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/12_dalalstreet1-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/Forbes.png')",
                     }}
                   ></div>
                 </div>
@@ -640,10 +650,21 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/13_outlook-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/BusinessStandard.png')",
                     }}
                   ></div>
                 </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/News18.png')",
+                    }}
+                  ></div>
+                </div>
+
+                
               </div>
             </div>
 
