@@ -12,6 +12,8 @@ import WinningProducts from "@/components/WinningProducts";
 import PricingPlans from "@/components/PricingPlans";
 import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
+import SupportedPlatforms from "@/components/SupportedPlatforms";
+import MediaRecognition from "@/components/MediaRecognition";
 
 export default function Home() {
   return (
@@ -20,11 +22,13 @@ export default function Home() {
       <Header />
       <main>
         <Hero />
+        <SupportedPlatforms />
         <HowItWorks />
         <Features />
         <WhyChooseUs />
         <ProductCategories />
         <WinningProducts />
+        <MediaRecognition />
         <PotentialCalculator />
         <SuccessMetrics />
         <PricingPlans />

@@ -205,16 +205,13 @@ export default function Hero() {
                   repeatType: "reverse",
                 }}
               />
-
-              <div className="relative rounded-xl overflow-hidden shadow-2xl border-4 border-white/20">
-                <img
-                  src="https://placehold.co/600x400"
-                  alt="Entrepreneur managing online dropshipping business"
-                  className="w-full h-auto rounded-lg"
-                  width="600"
-                  height="400"
+              <video className="w-full" autoPlay muted controls loop>
+                <source
+                  src="../../public/what-is-dropshipping by-baapstore.mp4"
+                  type="video/mp4"
                 />
-              </div>
+                Your browser does not support the video tag.
+              </video>
 
               {/* Floating elements */}
               <motion.div

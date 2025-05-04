@@ -244,7 +244,7 @@ export default function Footer() {
         </div>
 
         {/* Payment Methods and Certifications */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b border-white/10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 pb-12 border-b border-black/30">
           <div>
             <h4 className="font-semibold mb-4">Secured Payment Methods</h4>
             <div className="flex flex-wrap gap-3">

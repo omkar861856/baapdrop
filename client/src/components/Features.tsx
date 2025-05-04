@@ -11,10 +11,16 @@ import {
   Settings,
   Images,
   Headphones,
+  Package,
   BadgePercent,
+  DollarSign,
+  Zap,
+  Globe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { scrollToElement } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import { AnimatePresence } from "framer-motion";
 
 const platformFeatures = [
   {
@@ -97,6 +103,39 @@ const resellBenefits = [
   {
     title: "Fast Pan-India Shipping",
     description: "Coverage to 27,000+ pincodes across India",
+  },
+];
+
+const dropshippingGuarantees = [
+  {
+    icon: <Package className="h-8 w-8" />,
+    title: "Guarantee 1",
+    description:
+      "Our 150,000+ Products with 7000+ SKUs, and 15+ Categories are the highest number of dropshipping products.",
+  },
+  {
+    icon: <DollarSign className="h-8 w-8" />,
+    title: "Guarantee 2",
+    description:
+      "Our products' costs are up to 80% cheaper than market price even when you order a single quantity. Compare easily with B2B portals to know it yourself.",
+  },
+  {
+    icon: <Truck className="h-8 w-8" />,
+    title: "Guarantee 3",
+    description:
+      "Our Flat Shipping cost of 39rs irrespective of weight, value, or distance is the cheapest one. You may even compare it with top courier companies like Delhivery, Speed Post or local ones like DTDC.",
+  },
+  {
+    icon: <Zap className="h-8 w-8" />,
+    title: "Guarantee 4",
+    description:
+      "Website we build for you with Automatic Stocks & Order Updates are more advanced and cheaper than any website development company can provide you.",
+  },
+  {
+    icon: <Globe className="h-8 w-8" />,
+    title: "Guarantee 5",
+    description:
+      "Our exhaustive marketing tools, along with resources and data we provide are something not even a marketing company can provide you. Check with our sales team to know the surprise here.",
   },
 ];
 
@@ -248,7 +287,7 @@ export default function Features() {
           </div>
         </motion.div>
 
-        {/* Seller Support */}
+        {/* 5G Dropshipping Guarantees */}
         <div className="mb-20">
           <motion.div
             className="text-center mb-12"
@@ -257,39 +296,375 @@ export default function Features() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-2xl md:text-3xl font-bold mb-3">
-              Comprehensive Seller Support
-            </h3>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              We provide end-to-end support to ensure your dropshipping business
-              succeeds
-            </p>
+            <div className="flex justify-center items-center gap-6 mb-6">
+              <div className="bg-white overflow-hidden w-full max-w-xl shadow-xl rounded-lg">
+                <div className="bg-yellow-400/10 py-4 px-6 text-center">
+                  <h3 className="text-xl font-bold text-yellow-600">
+                    5G DROPSHIPPING GUARANTEES
+                  </h3>
+                  <p className="text-gray-700 mt-2">
+                    The fastest and most profitable way to start your online
+                    business
+                  </p>
+                </div>
+              </div>
+            </div>
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 md:grid-cols-2 gap-6"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
           >
-            {sellerSupport.map((feature, index) => (
+            {dropshippingGuarantees.map((guarantee, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-xl border border-gray-200 p-6 text-center hover:border-primary/30 hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-xl border border-gray-200 p-6 hover:border-yellow-400 hover:shadow-lg transition-all duration-300"
                 variants={itemVariants}
               >
-                <div className="inline-flex items-center justify-center h-16 w-16 bg-primary/10 text-primary rounded-full mb-5">
-                  {feature.icon}
+                <div className="flex items-start gap-4">
+                  <div className="bg-yellow-400 text-black font-bold rounded-full h-9 w-9 flex items-center justify-center flex-shrink-0">
+                    {index + 1}
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold mb-2 text-gray-800">
+                      Guarantee {index + 1}
+                    </h3>
+                    <p className="text-gray-700">{guarantee.description}</p>
+                  </div>
                 </div>
-                <h3 className="text-lg font-bold mb-3 text-gray-800">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600">{feature.description}</p>
               </motion.div>
             ))}
           </motion.div>
+
+          <motion.div
+            className="mt-8 text-center"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
+            <div className="bg-yellow-100 rounded-xl border border-yellow-200 p-6 inline-block shadow-md max-w-3xl">
+              <p className="text-gray-800 font-medium">
+                We challenge publicly. Go around the planet, check everywhere
+                and find if there is any dropshipping platform that can provide
+                vast and better services than us. Let's make it easier for you,
+                the answer is{" "}
+                <span className="font-bold text-yellow-600">'No'</span> 😊
+              </p>
+            </div>
+          </motion.div>
         </div>
+
+        {/* India Trusts Baapstore */}
+        <motion.div
+          className="py-12 mt-20 bg-slate-900 text-white rounded-xl overflow-hidden relative shadow-xl border-t-2 border-[#E40446]"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Background decorations */}
+          <div className="absolute -right-10 -top-10 w-40 h-40 rounded-full bg-white opacity-5"></div>
+          <div className="absolute -left-10 -bottom-10 w-40 h-40 rounded-full bg-white opacity-5"></div>
+
+          <div className="container mx-auto px-4 relative z-10">
+            <div className="mb-8">
+              <div className="inline-block mb-3">
+                <span className="bg-[#E40446]/20 text-[#E40446] px-4 py-1.5 rounded-full text-sm font-medium">
+                  Media Recognition
+                </span>
+              </div>
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold text-center mb-4"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6 }}
+              >
+                India Trusts BAAPSTORE
+              </motion.h2>
+              <p className="text-gray-400 text-center max-w-2xl mx-auto">
+                Featured in leading business publications and recognized for
+                excellence in dropshipping services
+              </p>
+            </div>
+
+            {/* Infinite Logo Scroll Animation */}
+            <div className="relative flex overflow-hidden py-4">
+              <div className="flex whitespace-nowrap animate-marquee">
+                {/* First row of logos */}
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/1_StartupTN-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/2_startup-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/3_ISO-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/4_certificate-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/5_Forbes-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/6_business-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/7_news18-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+
+                {/* Duplicate logos for seamless scrolling */}
+
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/1_StartupTN-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/2_startup-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/3_ISO-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/4_certificate-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/5_Forbes-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/6_business-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/7_news18-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Second Row - Reverse Direction */}
+            <div className="relative flex overflow-hidden py-4 mt-4">
+              <div className="flex whitespace-nowrap animate-marquee-reverse">
+                {/* Second row of logos */}
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/8_Yourstory-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/9_zee5-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/10_livemint-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/11_theweek-300x300-removebg-preview (1).png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/12_dalalstreet1-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/13_outlook-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+
+                {/* Duplicate logos for seamless scrolling */}
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/8_Yourstory-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/9_zee5-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/10_livemint-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/11_theweek-300x300-removebg-preview (1).png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/12_dalalstreet1-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+                <div className="mx-3 bg-white p-3 rounded-md flex items-center justify-center h-20 w-32 shadow-md">
+                  <div
+                    className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
+                    style={{
+                      backgroundImage:
+                        "url('../../public/13_outlook-300x300-removebg-preview.png')",
+                    }}
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <motion.div
+              className="mt-10 text-center"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1 }}
+            >
+              <button
+                className="bg-[#E40446] hover:bg-[#E40446]/90 text-white font-medium shadow-lg px-8 py-3 rounded-md transition duration-300"
+                onClick={() =>
+                  document
+                    .getElementById("join-now")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }
+              >
+                Join India's Most Trusted Dropshipping Platform
+              </button>
+            </motion.div>
+          </div>
+        </motion.div>
 
         {/* Reseller Benefits */}
         <motion.div
@@ -356,3 +731,112 @@ export default function Features() {
     </section>
   );
 }
+
+export const Companies = () => {
+  let [logos, setLogos] = useState([
+    [
+      {
+        title: "amazon",
+        src: "/logos/amazon-300x164.png",
+      },
+      {
+        title: "shopify",
+        src: "/logos/shopify-300x164.png",
+      },
+      {
+        title: "woo",
+        src: "/logos/woocommerce-300x164.png",
+      },
+      {
+        title: "opencart",
+        src: "/logos/opencart-300x164.png",
+      },
+    ],
+    [
+      {
+        title: "amazon second",
+        src: "/logos/amazon-300x164.png",
+      },
+      {
+        title: "shopify second",
+        src: "/logos/shopify-300x164.png",
+      },
+      {
+        title: "woo second",
+        src: "/logos/woocommerce-300x164.png",
+      },
+      {
+        title: "opencart second",
+        src: "/logos/opencart-300x164.png",
+      },
+    ],
+  ]);
+  const [activeLogoSet, setActiveLogoSet] = useState(logos[0]);
+  const [isAnimating, setIsAnimating] = useState<boolean>(false);
+
+  const flipLogos = () => {
+    setLogos((currentLogos) => {
+      const newLogos = [...currentLogos.slice(1), currentLogos[0]];
+      setActiveLogoSet(newLogos[0]);
+      setIsAnimating(true);
+      return newLogos;
+    });
+  };
+
+  useEffect(() => {
+    if (!isAnimating) {
+      const timer = setTimeout(() => {
+        flipLogos();
+      }, 3000);
+      return () => clearTimeout(timer); // Clear timeout if component unmounts or isAnimating changes
+    }
+  }, [isAnimating]);
+
+  return (
+    <div className="relative z-20 py-10 md:py-40">
+      <div className="flex gap-10 flex-wrap justify-center md:gap-40 relative h-full w-full mt-20">
+        <AnimatePresence
+          mode="popLayout"
+          onExitComplete={() => {
+            setIsAnimating(false);
+          }}
+        >
+          {activeLogoSet.map((logo, idx) => (
+            <motion.div
+              initial={{
+                y: 40,
+                opacity: 0,
+                filter: "blur(10px)",
+              }}
+              animate={{
+                y: 0,
+                opacity: 1,
+                filter: "blur(0px)",
+              }}
+              exit={{
+                y: -40,
+                opacity: 0,
+                filter: "blur(10px)",
+              }}
+              transition={{
+                duration: 0.8,
+                delay: 0.1 * idx,
+                ease: [0.4, 0, 0.2, 1],
+              }}
+              key={logo.title}
+              className="relative"
+            >
+              <img
+                src={logo.src}
+                alt={logo.title}
+                width="100"
+                height="100"
+                className="md:h-20 md:w-40 h-10 w-20 object-contain filter"
+              />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </div>
+    </div>
+  );
+};
