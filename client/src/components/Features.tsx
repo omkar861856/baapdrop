@@ -467,7 +467,7 @@ export default function Features() {
                     className="w-full h-full bg-white bg-contain bg-center bg-no-repeat"
                     style={{
                       backgroundImage:
-                        "url('../../public/1_StartupTN-300x300-removebg-preview.png')",
+                        "url('https://ik.imagekit.io/6aatygthe/Baapstore/StartupTN.png')",
                     }}
                   ></div>
                 </div>
@@ -525,6 +525,8 @@ export default function Features() {
                     }}
                   ></div>
                 </div>
+
+                
               </div>
             </div>
 
