@@ -5,7 +5,8 @@ import { promisify } from "util";
 import { migrate } from "drizzle-orm/neon-serverless/migrator";
 import { users } from "../shared/schema.js";
 import "dotenv/config";
-import { drizzle, eq } from "drizzle-orm/neon-serverless";
+import { drizzle } from "drizzle-orm/neon-serverless";
+import { eq } from "drizzle-orm";
 
 const scryptAsync = promisify(scrypt);
 
