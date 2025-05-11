@@ -7,7 +7,7 @@ const { promisify } = require("util");
 const crypto = require("crypto");
 const path = require("path");
 const fs = require("fs");
-import "dotenv/config";
+require("dotenv").config();
 
 const execAsync = promisify(exec);
 const scryptAsync = promisify(crypto.scrypt);
