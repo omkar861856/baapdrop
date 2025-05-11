@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm run build && node scripts/db-setup.mjs",
+  "buildCommand": "npm run build && node scripts/vercel-db-setup.cjs",
   "outputDirectory": "dist/public",
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/index.js" },
