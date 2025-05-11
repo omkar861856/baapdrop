@@ -1,0 +1,124 @@
+# BaapStore Codebase Documentation
+
+## Project Overview
+BaapStore is a full-stack web application built with TypeScript, React, and Express. The project uses modern tooling and follows a client-server architecture.
+
+## Tech Stack
+- Frontend: React 18, TypeScript, TailwindCSS, Shadcn UI components
+- Backend: Express.js, TypeScript
+- Database: Neon Database (PostgreSQL)
+- ORM: Drizzle ORM
+- Authentication: Passport.js
+- Build Tools: Vite, ESBuild
+- Package Manager: npm
+
+## Project Structure
+
+### Root Directory
+- `package.json`: Project dependencies and scripts
+- `tsconfig.json`: TypeScript configuration
+- `vite.config.ts`: Vite build configuration
+- `tailwind.config.ts`: Tailwind CSS configuration
+- `drizzle.config.ts`: Database ORM configuration
+- `vercel.json`: Vercel deployment configuration
+
+### Server Directory (`/server`)
+- `index.ts`: Main server entry point
+- `auth.ts`: Authentication middleware and configuration
+- `db.ts`: Database connection setup
+- `storage.ts`: File storage handling
+- `routes.ts`: Main route definitions
+- `/routes`: API route handlers
+- `/utils`: Server utility functions
+
+### Client Directory (`/client`)
+- `index.html`: Main HTML entry point
+- `/src`: React application source code
+- `/public`: Static assets
+
+### Shared Directory (`/shared`)
+- Shared types and utilities between client and server
+
+### API Directory (`/api`)
+- Production API endpoints
+
+## Key Features
+1. User Authentication
+   - Local authentication using Passport.js
+   - Session management with express-session
+   - Secure password handling
+
+2. Database Operations
+   - PostgreSQL database with Neon
+   - Drizzle ORM for type-safe database operations
+   - Schema migrations support
+
+3. File Storage
+   - File upload handling with Multer
+   - Secure file storage implementation
+
+4. Frontend Features
+   - Modern UI components using Shadcn
+   - Responsive design with Tailwind CSS
+   - Client-side routing with Wouter
+   - Form handling with React Hook Form
+   - Data fetching with TanStack Query
+
+## Development Workflow
+
+### Available Scripts
+- `npm run dev`: Start development server
+- `npm run build`: Build for production
+- `npm run start`: Start production server
+- `npm run check`: Type checking
+- `npm run db:push`: Push database schema changes
+- `npm run db:studio`: Open database management UI
+
+### Environment Setup
+1. Install dependencies: `npm install`
+2. Set up environment variables
+3. Run database migrations
+4. Start development server: `npm run dev`
+
+## Deployment
+The application is configured for deployment on Vercel with the following considerations:
+- API routes are built and deployed separately
+- Static assets are served from the client build
+- Environment variables are managed through Vercel
+
+## Security Considerations
+- Session-based authentication
+- Secure password handling
+- File upload validation
+- CORS configuration
+- Environment variable management
+
+## Best Practices
+1. TypeScript for type safety
+2. Component-based architecture
+3. Modular routing
+4. Centralized state management
+5. Error handling and validation
+6. Code splitting and lazy loading
+7. Responsive design principles
+
+## Dependencies
+Key dependencies include:
+- React and React DOM
+- Express.js
+- Drizzle ORM
+- Passport.js
+- Tailwind CSS
+- Shadcn UI components
+- Various Radix UI primitives
+- Development tools (Vite, TypeScript, etc.)
+
+## Contributing
+1. Follow TypeScript best practices
+2. Maintain consistent code style
+3. Write meaningful commit messages
+4. Test changes thoroughly
+5. Update documentation as needed
+
+## Support
+For issues and feature requests, please refer to the project's issue tracker or documentation. 

@@ -14,6 +14,7 @@ import AnnouncementBar from "@/components/AnnouncementBar";
 import Footer from "@/components/Footer";
 import SupportedPlatforms from "@/components/SupportedPlatforms";
 import MediaRecognition from "@/components/MediaRecognition";
+import FeaturedProducts from "@/components/FeaturedProduts";
 
 export default function Home() {
   return (
@@ -27,10 +28,11 @@ export default function Home() {
         <Features />
         <WhyChooseUs />
         <ProductCategories />
+        <FeaturedProducts />
         <WinningProducts />
         <MediaRecognition />
-        <PotentialCalculator />
-        <SuccessMetrics />
+        {/* <PotentialCalculator /> */}
+        {/* <SuccessMetrics /> */}
         <PricingPlans />
         <Testimonials />
         <JoinForm />

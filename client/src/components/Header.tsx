@@ -82,7 +82,7 @@ export default function Header() {
                     <span className="text-white font-bold text-xl">B</span>
                   </div>
                   <span className="text-primary text-2xl font-bold">
-                    BaapDrop
+                    Baapstore
                   </span>
                 </div>
               </Link>
@@ -97,7 +97,7 @@ export default function Header() {
                     <span className="text-white font-bold text-xl">B</span>
                   </div>
                   <span className="text-primary text-2xl font-bold">
-                    BaapDrop
+                    Baapstore
                   </span>
                 </div>
               </a>
