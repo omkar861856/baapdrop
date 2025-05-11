@@ -77,10 +77,10 @@ async function setup() {
       await db.insert(schema.users).values({
         username: "admin",
         password: hashedPassword,
-        fullName: "Administrator",
+        full_name: "Administrator",
         email: "admin@example.com",
-        isAdmin: true,
-        createdAt: new Date().toISOString(),
+        is_admin: true,
+        created_at: new Date().toISOString(),
       });
 
       console.log("✅ Admin user created successfully");
