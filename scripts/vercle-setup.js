@@ -1,20 +1,23 @@
-// This script is meant to be run as part of Vercel's build process
-// It prepares the database schema and seeds the admin user
-
-const { Pool } = require("@neondatabase/serverless");
-const { drizzle } = require("drizzle-orm/neon-serverless");
-const { migrate } = require("drizzle-orm/neon-serverless/migrator");
-const { exec } = require("child_process");
-const { promisify } = require("util");
-const crypto = require("crypto");
-const path = require("path");
-const fs = require("fs");
+import { Pool } from "@neondatabase/serverless";
+import { drizzle } from "drizzle-orm/neon-serverless";
+import { migrate } from "drizzle-orm/neon-serverless/migrator";
+import { exec } from "child_process";
+import { promisify } from "util";
+import crypto from "crypto";
+import path from "path";
+import fs from "fs";
+import { fileURLToPath } from "url";
 import "dotenv/config";
+import { eq } from "drizzle-orm"; // Missing in original: required for `.where`
 
 const execAsync = promisify(exec);
 const scryptAsync = promisify(crypto.scrypt);
 
-// Function to hash passwords (same as in auth.ts)
+// Helper for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Function to hash passwords
 async function hashPassword(password) {
   const salt = crypto.randomBytes(16).toString("hex");
   const buf = await scryptAsync(password, salt, 64);
@@ -25,43 +28,42 @@ async function hashPassword(password) {
 async function setupDatabase() {
   console.log("🚀 Starting Vercel deployment database setup...");
 
-  // Ensure we have a DATABASE_URL
   if (!process.env.DATABASE_URL) {
     console.error("❌ DATABASE_URL is not set. Database setup cannot proceed.");
     process.exit(1);
   }
 
-  // Connect to the database
   console.log("🔌 Connecting to database...");
   const pool = new Pool({ connectionString: process.env.DATABASE_URL });
 
   try {
-    // Locate the schema file
+    // Load schema
     console.log("🔍 Locating schema...");
     let schema;
     try {
-      // Try to require the schema from the dist directory
-      schema = require("../dist/shared/schema");
+      const schemaModule = await import(
+        path.join(__dirname, "../dist/shared/schema.js")
+      );
+      schema = schemaModule;
       console.log("✅ Found schema in dist/shared/schema");
     } catch (e) {
       console.error("❌ Failed to load schema:", e);
       process.exit(1);
     }
 
-    // Initialize Drizzle with the schema
     const db = drizzle(pool, { schema });
 
-    // Push database schema
+    // Push schema
     console.log("🔧 Pushing database schema...");
     try {
-      await execAsync("npx drizzle-kit push:pg");
-      console.log("✅ Schema pushed successfully");
+      const { stdout } = await execAsync("npx drizzle-kit push:pg");
+      console.log("✅ Schema pushed successfully:", stdout);
     } catch (error) {
       console.error("❌ Failed to push schema:", error.message);
       process.exit(1);
     }
 
-    // Check if admin user exists
+    // Check for admin user
     console.log("👤 Checking for admin user...");
     const [adminUser] = await db
       .select()
@@ -69,7 +71,6 @@ async function setupDatabase() {
       .where(eq(schema.users.username, "admin"))
       .limit(1);
 
-    // Create admin user if it doesn't exist
     if (!adminUser) {
       console.log("➕ Creating admin user...");
       const hashedPassword = await hashPassword("admin");
@@ -97,5 +98,4 @@ async function setupDatabase() {
   }
 }
 
-// Run the setup
 setupDatabase();

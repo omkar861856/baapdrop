@@ -1,57 +1,36 @@
-const { exec } = require("child_process");
-const { Pool } = require("@neondatabase/serverless");
-const { scrypt, randomBytes } = require("crypto");
-const { promisify } = require("util");
-const { drizzle } = require("drizzle-orm/neon-serverless");
-const { eq } = require("drizzle-orm");
-const { migrate } = require("drizzle-orm/neon-serverless/migrator");
-const { users } = require("../shared/schema.js");
+import { exec } from "child_process";
+import { Pool } from "@neondatabase/serverless";
+import { scrypt, randomBytes } from "crypto";
+import { promisify } from "util";
+import { drizzle, eq } from "drizzle-orm";
+import { migrate } from "drizzle-orm/neon-serverless/migrator";
+import { users } from "../shared/schema.js";
 import "dotenv/config";
 
 const scryptAsync = promisify(scrypt);
 
-// Function to hash passwords
 async function hashPassword(password) {
   const salt = randomBytes(16).toString("hex");
   const buf = await scryptAsync(password, salt, 64);
   return `${buf.toString("hex")}.${salt}`;
 }
 
-// Main function
 async function setup() {
   console.log("🔧 Starting database setup...");
 
-  // Ensure DATABASE_URL is set
   if (!process.env.DATABASE_URL) {
     console.error("❌ DATABASE_URL environment variable is not set");
     process.exit(1);
   }
 
   try {
-    // 1. Setup database connection
     console.log("📊 Connecting to database...");
     const pool = new Pool({ connectionString: process.env.DATABASE_URL });
     const db = drizzle(pool);
 
-    // 2. Push schema changes
     console.log("🔄 Applying schema changes...");
 
-    // Option 1: Use drizzle-kit CLI (uncomment if preferred)
-    // await new Promise((resolve, reject) => {
-    //   exec('npx drizzle-kit push:pg', (error, stdout, stderr) => {
-    //     if (error) {
-    //       console.error(`Error executing drizzle-kit: ${error.message}`);
-    //       reject(error);
-    //       return;
-    //     }
-    //     console.log(stdout);
-    //     resolve();
-    //   });
-    // });
-
-    // Option 2: Use drizzle-orm migrations (if you have migrations set up)
     try {
-      // This requires migration files in your project
       await migrate(db, { migrationsFolder: "./migrations" });
       console.log("✅ Schema migrations completed successfully");
     } catch (migrateError) {
@@ -60,7 +39,6 @@ async function setup() {
         migrateError.message
       );
 
-      // Fall back to drizzle-kit push if migrations fail
       await new Promise((resolve, reject) => {
         exec("npx drizzle-kit push:pg", (error, stdout, stderr) => {
           if (error) {
@@ -75,7 +53,6 @@ async function setup() {
       });
     }
 
-    // 3. Check if admin user exists
     console.log("👤 Checking for admin user...");
     const adminUser = await db
       .select()
@@ -83,7 +60,6 @@ async function setup() {
       .where(eq(users.username, "admin"))
       .limit(1);
 
-    // 4. Create admin user if it doesn't exist
     if (!adminUser || adminUser.length === 0) {
       console.log("➕ Creating admin user...");
       const hashedPassword = await hashPassword("admin");
@@ -110,5 +86,4 @@ async function setup() {
   }
 }
 
-// Run the setup function
 setup();
