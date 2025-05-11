@@ -2,10 +2,10 @@ import { exec } from "child_process";
 import { Pool } from "@neondatabase/serverless";
 import { scrypt, randomBytes } from "crypto";
 import { promisify } from "util";
-import { drizzle, eq } from "drizzle-orm";
 import { migrate } from "drizzle-orm/neon-serverless/migrator";
 import { users } from "../shared/schema.js";
 import "dotenv/config";
+import { drizzle, eq } from "drizzle-orm/neon-serverless";
 
 const scryptAsync = promisify(scrypt);
 
