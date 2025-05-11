@@ -1,5 +1,6 @@
 // Simple script to test database connection
 const { Pool } = require("@neondatabase/serverless");
+import "dotenv/config";
 
 async function testConnection() {
   console.log("🔍 Testing database connection...");

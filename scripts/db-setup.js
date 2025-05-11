@@ -6,6 +6,7 @@ const { drizzle } = require("drizzle-orm/neon-serverless");
 const { eq } = require("drizzle-orm");
 const { migrate } = require("drizzle-orm/neon-serverless/migrator");
 const { users } = require("../shared/schema.js");
+import "dotenv/config";
 
 const scryptAsync = promisify(scrypt);
 
