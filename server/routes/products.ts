@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import { storage } from "../storage";
 import { importProductsFromCsv } from "../utils/csvImporter";
+import "dotenv/config";
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(process.cwd(), "uploads");

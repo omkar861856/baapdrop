@@ -539,6 +539,7 @@ function serveStatic(app2) {
 }
 
 // server/auth.ts
+import "dotenv/config";
 var scryptAsync = promisify(scrypt);
 async function hashPassword(password) {
   const salt = randomBytes(16).toString("hex");
@@ -798,6 +799,7 @@ async function importProductsFromCsv(filePath) {
 }
 
 // server/routes/products.ts
+import "dotenv/config";
 var uploadsDir = path3.join(process.cwd(), "uploads");
 if (!fs3.existsSync(uploadsDir)) {
   fs3.mkdirSync(uploadsDir, { recursive: true });
@@ -974,6 +976,7 @@ function registerProductRoutes(app2) {
 import fs4 from "fs";
 import path4 from "path";
 import multer2 from "multer";
+import "dotenv/config";
 var uploadsDir2 = path4.join(process.cwd(), "uploads");
 if (!fs4.existsSync(uploadsDir2)) {
   fs4.mkdirSync(uploadsDir2, { recursive: true });
@@ -1237,9 +1240,11 @@ async function registerRoutes(app2) {
 }
 
 // server/index.ts
+import cors from "cors";
 var app = express2();
 app.use(express2.json());
 app.use(express2.urlencoded({ extended: false }));
+app.use(cors());
 app.use((req, res, next) => {
   const start = Date.now();
   const path5 = req.path;
