@@ -10,9 +10,8 @@
     "check": "tsc --noEmit",
     "db:push": "drizzle-kit push",
     "postinstall": "pnpm rebuild",
-    "db:setup": "node --require=tsx/esm scripts/db-setup.js",
     "db:migrate:generate": "drizzle-kit generate:pg",
-    "vercel-build": "pnpm run build && pnpm run db:setup"
+    "vercel-build": "pnpm run build"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
