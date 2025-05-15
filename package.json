@@ -10,7 +10,8 @@
     "check": "tsc --noEmit",
     "db:push": "drizzle-kit push",
     "db:migrate:generate": "drizzle-kit generate:pg",
-    "vercel-build": "pnpm run build"
+    "vercel-build": "pnpm run build",
+    "postinstall": "npm rebuild rollup"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
