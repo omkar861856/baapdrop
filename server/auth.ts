@@ -6,6 +6,7 @@ import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
 import { storage } from "./storage";
 import { log } from "./vite";
+import "dotenv/config";
 
 declare global {
   namespace Express {
