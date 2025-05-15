@@ -9,7 +9,6 @@
     "start": "NODE_ENV=production node dist/index.js",
     "check": "tsc --noEmit",
     "db:push": "drizzle-kit push",
-    "postinstall": "pnpm rebuild",
     "db:migrate:generate": "drizzle-kit generate:pg",
     "vercel-build": "pnpm run build"
   },
